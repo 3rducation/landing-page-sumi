@@ -63,3 +63,39 @@ VS Code でこのワークスペースを開くと、自動で dev server が立
 - `npm run dev`
 - `npm run build`
 - `npm run preview`
+
+## 公開前の確認
+
+```bash
+npm run build
+npm run preview
+```
+
+`npm run preview` の表示で、以下を確認します。
+
+- `/` にLP全体が表示される
+- ヘッダーのアンカーリンクが動く
+- スマートフォン幅で表示が崩れない
+- お問い合わせフォームUIが表示される
+
+## GitHub Pagesで公開する
+
+1. GitHub Pages の公開先を `main` ブランチの `dist/`、またはGitHub Actionsのビルド成果物に設定します。
+2. カスタムドメインは `www.3rducation.com` を使います。
+3. 公開後、次のURLにアクセスできることを確認します。
+
+- `https://www.3rducation.com/`
+- `https://www.3rducation.com/robots.txt`
+- `https://www.3rducation.com/sitemap.xml`
+
+## 検索に出すための設定
+
+公開しただけでは、すぐにGoogle検索へ表示されるとは限りません。公開後に次を行います。
+
+1. Google Search Consoleで `3rducation.com` をドメインプロパティとして登録します。
+2. DNSで所有権を確認します。
+3. サイトマップ `https://www.3rducation.com/sitemap.xml` を送信します。
+4. URL検査で `https://www.3rducation.com/` を入力し、「インデックス登録をリクエスト」を実行します。
+5. 数日後に `site:3rducation.com` で検索し、インデックス状況を確認します。検索結果への表示時期や順位は保証されません。
+
+検索結果で使われやすい文言は `src/data/lpContent.ts` の `meta`、検索エンジン向けの共通タグは `src/layouts/BaseLayout.astro` で編集できます。

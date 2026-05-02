@@ -1,5 +1,32 @@
 ---
-const { title, description } = Astro.props;
+const {
+  title,
+  description,
+  siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? 'https://www.3rducation.com',
+  image = '/images/hero-media/hero-dashboard.png',
+  keywords = [],
+} = Astro.props;
+
+const canonicalUrl = new URL(Astro.url.pathname, siteUrl).toString();
+const ogImageUrl = new URL(image, siteUrl).toString();
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: '合同会社3rducation',
+  url: siteUrl,
+  logo: new URL('/images/logo-transparent.png', siteUrl).toString(),
+};
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'AI自動採点「澄」',
+  url: siteUrl,
+  description,
+  publisher: {
+    '@type': 'Organization',
+    name: '合同会社3rducation',
+  },
+};
 ---
 
 <!DOCTYPE html>
@@ -9,7 +36,25 @@ const { title, description } = Astro.props;
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{title}</title>
   <meta name="description" content={description} />
+  <meta name="keywords" content={keywords.join(', ')} />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#ffffff" />
+  <link rel="canonical" href={canonicalUrl} />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="alternate icon" href="/favicon.ico" />
+  <meta property="og:locale" content="ja_JP" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="AI自動採点「澄」" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonicalUrl} />
+  <meta property="og:image" content={ogImageUrl} />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={ogImageUrl} />
+  <script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
 </head>
 <body class="antialiased">
   <slot />

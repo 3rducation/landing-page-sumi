@@ -7,6 +7,18 @@ export const meta = {
   title: "AI自動採点「澄」| 学校向け採点業務効率化ツール",
   description:
     "生成AIを活用し、採点・集計・返却業務を効率化する学校向けAI自動採点ツール「澄」。 教職員の負担を軽減し、生徒への迅速なフィードバックを支援します。",
+  siteUrl: "https://www.3rducation.com",
+  image: "/images/hero-media/hero-dashboard.png",
+  keywords: [
+    "AI自動採点",
+    "自動採点",
+    "採点支援",
+    "学校向けAI",
+    "教員業務効率化",
+    "定期テスト 採点",
+    "澄",
+    "3rducation",
+  ],
 };
 
 export const nav = [

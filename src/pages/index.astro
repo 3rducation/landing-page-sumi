@@ -37,7 +37,13 @@ import {
 } from '../data/lpContent';
 ---
 
-<BaseLayout title={meta.title} description={meta.description}>
+<BaseLayout
+  title={meta.title}
+  description={meta.description}
+  siteUrl={meta.siteUrl}
+  image={meta.image}
+  keywords={meta.keywords}
+>
   <Header nav={nav} />
   <HeroSection hero={hero} />
   <TrustBadgesSection trustBadges={trustBadges} />
