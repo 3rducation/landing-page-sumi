@@ -1,29 +1,7 @@
 ---
 const { hero } = Astro.props;
 
-const statCards = [
-  { label: '採点済み', value: '142', unit: '枚' },
-  { label: 'クラス平均', value: '74.2', unit: '点' },
-  { label: '返却済み', value: '98', unit: '%' },
-];
-
-const impactCards = [
-  {
-    value: hero.stat.value,
-    label: hero.stat.label,
-    note: hero.stat.note,
-  },
-  {
-    value: `${statCards[0].value}${statCards[0].unit}`,
-    label: '採点済みサンプル',
-    note: 'ダッシュボード表示例',
-  },
-  {
-    value: `${statCards[2].value}${statCards[2].unit}`,
-    label: '返却完了率',
-    note: 'ダッシュボード表示例',
-  },
-];
+const impactCards = hero.impactCards ?? [];
 
 ---
 

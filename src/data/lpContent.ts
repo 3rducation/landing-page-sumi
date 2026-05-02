@@ -27,11 +27,23 @@ export const hero = {
   mediaAlt: "AI自動採点 澄 ダッシュボード画面",
   primaryCta: "資料請求する",
   secondaryCta: "デモを相談する",
-  stat: {
-    value: "約75%",
-    label: "採点時間の削減",
-    note: "社内検証による目安",
-  },
+  impactCards: [
+    {
+      value: "15分",
+      label: "１クラス採点完了",
+      note: "初期設定は7分で完了",
+    },
+    {
+      value: "75%減",
+      label: "総採点時間",
+      note: "当社検証",
+    },
+    {
+      value: "完全自動採点",
+      label: "生成AI利用による完全自動採点を実現",
+      note: "",
+    },
+  ],
 };
 
 export const trustBadges = [
