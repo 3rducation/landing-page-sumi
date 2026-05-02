@@ -1,0 +1,109 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-green: #1F6B4D;
+  --color-deep-green: #0F3D2E;
+  --color-fresh-green: #2F9E73;
+  --color-pale-green: #EAF6F0;
+  --color-mist-green: #F3FAF6;
+  --color-brand-gold: #A88B3D;
+  --color-light-gold: #E9D8A6;
+  --color-pale-gold: #FFF8E1;
+  --color-off-white: #FAFAF7;
+  --color-light-gray: #F6F8F7;
+  --color-border-gray: #E5E7EB;
+  --color-text-main: #111827;
+  --color-text-sub: #4B5563;
+
+  --font-family-sans: system-ui, -apple-system, BlinkMacSystemFont, "Hiragino Sans",
+    "Yu Gothic", "Noto Sans JP", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-family-sans);
+  color: var(--color-text-main);
+  line-height: 1.8;
+  background-color: #ffffff;
+}
+
+.section-eyebrow {
+  font-size: clamp(1.1rem, 3.5vw, 2rem);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-brand-green);
+}
+
+.section-eyebrow--on-dark {
+  color: #ffffff;
+}
+
+.section-heading {
+  font-size: clamp(1.15rem, 4.2vw, 2.25rem);
+  font-weight: 700;
+  color: var(--color-text-main);
+  line-height: 1.4;
+}
+
+.copy-pre-line {
+  white-space: pre-line;
+}
+
+.card {
+  background: #ffffff;
+  border: 1px solid var(--color-border-gray);
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.card:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.09);
+  transform: translateY(-2px);
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-brand-green);
+  color: #ffffff;
+  font-weight: 600;
+  padding: 0.75rem 1.75rem;
+  border-radius: 9999px;
+  transition: background-color 0.2s;
+  white-space: nowrap;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-deep-green);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  color: var(--color-deep-green);
+  font-weight: 600;
+  padding: 0.75rem 1.75rem;
+  border-radius: 9999px;
+  border: 1.5px solid var(--color-brand-green);
+  transition: background-color 0.2s;
+  white-space: nowrap;
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-mist-green);
+}
+
+@media (min-width: 768px) {
+  .card {
+    padding: 28px;
+  }
+}

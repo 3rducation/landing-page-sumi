@@ -1,0 +1,58 @@
+---
+import '../styles/global.css';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/lp/Header.astro';
+import HeroSection from '../components/lp/HeroSection.astro';
+import TrustBadgesSection from '../components/lp/TrustBadgesSection.astro';
+import ProblemSection from '../components/lp/ProblemSection.astro';
+import ComparisonSection from '../components/lp/ComparisonSection.astro';
+import SolutionSection from '../components/lp/SolutionSection.astro';
+import ServiceIntroSection from '../components/lp/ServiceIntroSection.astro';
+import FeaturesSection from '../components/lp/FeaturesSection.astro';
+import ProductMockupSection from '../components/lp/ProductMockupSection.astro';
+import HowItWorksSection from '../components/lp/HowItWorksSection.astro';
+import EffectsSection from '../components/lp/EffectsSection.astro';
+import SecuritySection from '../components/lp/SecuritySection.astro';
+import PricingSection from '../components/lp/PricingSection.astro';
+import FaqSection from '../components/lp/FaqSection.astro';
+import FinalCtaSection from '../components/lp/FinalCtaSection.astro';
+import ContactSection from '../components/lp/ContactSection.astro';
+import Footer from '../components/lp/Footer.astro';
+import {
+  meta,
+  nav,
+  hero,
+  trustBadges,
+  problems,
+  comparison,
+  solution,
+  features,
+  howItWorks,
+  effects,
+  security,
+  pricing,
+  faqs,
+  contact,
+  footer,
+} from '../data/lpContent';
+---
+
+<BaseLayout title={meta.title} description={meta.description}>
+  <Header nav={nav} />
+  <HeroSection hero={hero} />
+  <TrustBadgesSection trustBadges={trustBadges} />
+  <ProblemSection problems={problems} />
+  <ComparisonSection comparison={comparison} />
+  <SolutionSection solution={solution} />
+  <ServiceIntroSection />
+  <FeaturesSection features={features} />
+  <ProductMockupSection />
+  <HowItWorksSection howItWorks={howItWorks} />
+  <EffectsSection effects={effects} />
+  <SecuritySection security={security} />
+  <PricingSection pricing={pricing} />
+  <FaqSection faqs={faqs} />
+  <FinalCtaSection />
+  <ContactSection contact={contact} />
+  <Footer footer={footer} />
+</BaseLayout>

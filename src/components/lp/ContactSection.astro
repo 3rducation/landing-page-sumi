@@ -1,0 +1,316 @@
+---
+import { FORMSPREE_ENDPOINT, CONTACT_SUBJECT_PREFIX } from '../../config/contact';
+
+const { contact } = Astro.props;
+---
+
+<section id="contact" class="py-20 md:py-28 bg-[#FAFAF7]">
+  <div class="max-w-[1160px] mx-auto px-5 md:px-8">
+    <div class="text-center mb-12">
+      <p class="section-eyebrow copy-pre-line mb-3">{contact.eyebrow}</p>
+      <h2 class="section-heading copy-pre-line">{contact.heading}</h2>
+      <p class="copy-pre-line text-[#4B5563] mt-4 text-sm md:text-base">{contact.subCopy}</p>
+    </div>
+
+    <form
+      id="contact-form"
+      action={FORMSPREE_ENDPOINT}
+      method="POST"
+      class="max-w-xl mx-auto bg-white rounded-3xl shadow-sm border border-[#E5E7EB] p-8 space-y-5"
+    >
+      <input type="hidden" name="_subject" value={CONTACT_SUBJECT_PREFIX} />
+
+      <div class="grid sm:grid-cols-2 gap-5">
+        <div>
+          <label class="block text-xs font-semibold text-[#4B5563] mb-1.5">
+            学校名 <span class="text-red-500">*</span>
+          </label>
+          <input
+            type="text"
+            name="school"
+            required
+            placeholder="○○高等学校"
+            class="w-full border border-[#E5E7EB] rounded-xl px-4 py-2.5 text-sm outline-none focus:border-[#1F6B4D] focus:ring-1 focus:ring-[#1F6B4D] transition"
+          />
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-[#4B5563] mb-1.5">部署・役職</label>
+          <input
+            type="text"
+            name="department"
+            placeholder="教務主任"
+            class="w-full border border-[#E5E7EB] rounded-xl px-4 py-2.5 text-sm outline-none focus:border-[#1F6B4D] focus:ring-1 focus:ring-[#1F6B4D] transition"
+          />
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-xs font-semibold text-[#4B5563] mb-1.5">
+          お名前 <span class="text-red-500">*</span>
+        </label>
+        <input
+          type="text"
+          name="name"
+          required
+          placeholder="山田 太郎"
+          class="w-full border border-[#E5E7EB] rounded-xl px-4 py-2.5 text-sm outline-none focus:border-[#1F6B4D] focus:ring-1 focus:ring-[#1F6B4D] transition"
+        />
+      </div>
+
+      <div>
+        <label class="block text-xs font-semibold text-[#4B5563] mb-1.5">
+          メールアドレス <span class="text-red-500">*</span>
+        </label>
+        <input
+          type="email"
+          name="email"
+          required
+          placeholder="taro@school.ac.jp"
+          class="w-full border border-[#E5E7EB] rounded-xl px-4 py-2.5 text-sm outline-none focus:border-[#1F6B4D] focus:ring-1 focus:ring-[#1F6B4D] transition"
+        />
+      </div>
+
+      <div>
+        <label class="block text-xs font-semibold text-[#4B5563] mb-1.5">
+          電話番号 <span class="text-red-500">*</span>
+        </label>
+        <input
+          type="tel"
+          name="tel"
+          required
+          placeholder="03-0000-0000"
+          class="w-full border border-[#E5E7EB] rounded-xl px-4 py-2.5 text-sm outline-none focus:border-[#1F6B4D] focus:ring-1 focus:ring-[#1F6B4D] transition"
+        />
+      </div>
+
+      <div>
+        <label class="block text-xs font-semibold text-[#4B5563] mb-1.5">
+          お問い合わせ種別 <span class="text-red-500">*</span>
+        </label>
+        <select
+          name="inquiry_type"
+          required
+          class="w-full border border-[#E5E7EB] rounded-xl px-4 py-2.5 text-sm outline-none focus:border-[#1F6B4D] focus:ring-1 focus:ring-[#1F6B4D] transition bg-white"
+        >
+          <option value="">選択してください</option>
+          {contact.inquiryTypes.map((type) => (
+            <option value={type}>{type}</option>
+          ))}
+        </select>
+      </div>
+
+      <div
+        id="school-scale-fields"
+        class="hidden space-y-5 rounded-2xl border border-[#E5E7EB] bg-[#F8FBF9] p-5"
+      >
+        <p class="text-sm font-semibold text-[#1F6B4D]">学校規模</p>
+
+        <div>
+          <label class="block text-xs font-semibold text-[#4B5563] mb-1.5">
+            学年数 <span class="text-red-500">*</span>
+          </label>
+          <select
+            id="school-years"
+            name="school_years"
+            class="w-full border border-[#E5E7EB] rounded-xl px-4 py-2.5 text-sm outline-none focus:border-[#1F6B4D] focus:ring-1 focus:ring-[#1F6B4D] transition bg-white"
+          >
+            <option value="">選択してください</option>
+            <option value="3">3</option>
+            <option value="6">6</option>
+            <option value="other">その他</option>
+          </select>
+        </div>
+
+        <div id="school-years-other-wrapper" class="hidden">
+          <label class="block text-xs font-semibold text-[#4B5563] mb-1.5">
+            学年数（その他） <span class="text-red-500">*</span>
+          </label>
+          <input
+            type="text"
+            id="school-years-other"
+            name="school_years_other"
+            placeholder="例: 4"
+            class="w-full border border-[#E5E7EB] rounded-xl px-4 py-2.5 text-sm outline-none focus:border-[#1F6B4D] focus:ring-1 focus:ring-[#1F6B4D] transition"
+          />
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-[#4B5563] mb-1.5">
+            1学年あたり平均学級数 <span class="text-red-500">*</span>
+          </label>
+          <select
+            id="avg-classes"
+            name="avg_classes_per_grade"
+            class="w-full border border-[#E5E7EB] rounded-xl px-4 py-2.5 text-sm outline-none focus:border-[#1F6B4D] focus:ring-1 focus:ring-[#1F6B4D] transition bg-white"
+          >
+            <option value="">選択してください</option>
+            {Array.from({ length: 20 }, (_, index) => (
+              <option value={String(index + 1)}>{index + 1}</option>
+            ))}
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-[#4B5563] mb-1.5">
+            1学級あたり平均生徒数 <span class="text-red-500">*</span>
+          </label>
+          <select
+            id="avg-students"
+            name="avg_students_per_class"
+            class="w-full border border-[#E5E7EB] rounded-xl px-4 py-2.5 text-sm outline-none focus:border-[#1F6B4D] focus:ring-1 focus:ring-[#1F6B4D] transition bg-white"
+          >
+            <option value="">選択してください</option>
+            {Array.from({ length: 50 }, (_, index) => (
+              <option value={String(index + 1)}>{index + 1}</option>
+            ))}
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-xs font-semibold text-[#4B5563] mb-1.5">
+          お問い合わせ内容 <span id="message-required-mark" class="hidden text-red-500">*</span>
+        </label>
+        <textarea
+          id="contact-message"
+          name="message"
+          rows="4"
+          placeholder="ご質問・ご要望などをご記入ください"
+          class="w-full border border-[#E5E7EB] rounded-xl px-4 py-2.5 text-sm outline-none focus:border-[#1F6B4D] focus:ring-1 focus:ring-[#1F6B4D] transition resize-none"
+        ></textarea>
+      </div>
+
+      <button
+        id="contact-submit-button"
+        type="submit"
+        class="w-full btn-primary justify-center py-3.5 text-base"
+      >
+        送信する
+      </button>
+
+      <p id="contact-form-status" class="hidden text-center text-sm font-medium"></p>
+
+      <p class="text-center text-xs text-[#9CA3AF]">
+        送信内容は安全に Formspree 経由で受け付けます。
+      </p>
+    </form>
+  </div>
+</section>
+
+<script define:vars={{ formEndpoint: FORMSPREE_ENDPOINT, subjectPrefix: CONTACT_SUBJECT_PREFIX }}>
+  const form = document.getElementById('contact-form');
+  const inquiryType = form?.querySelector('select[name="inquiry_type"]');
+  const schoolScaleFields = document.getElementById('school-scale-fields');
+  const schoolYears = document.getElementById('school-years');
+  const schoolYearsOther = document.getElementById('school-years-other');
+  const schoolYearsOtherWrapper = document.getElementById('school-years-other-wrapper');
+  const avgClasses = document.getElementById('avg-classes');
+  const avgStudents = document.getElementById('avg-students');
+  const messageField = document.getElementById('contact-message');
+  const messageRequiredMark = document.getElementById('message-required-mark');
+  const statusMessage = document.getElementById('contact-form-status');
+  const submitButton = document.getElementById('contact-submit-button');
+
+  const quoteLabel = '料金・お見積もり';
+  const otherLabel = 'その他';
+
+  const setStatus = (message, tone = 'neutral') => {
+    if (!statusMessage) return;
+    statusMessage.textContent = message;
+    statusMessage.classList.remove('hidden', 'text-[#1F6B4D]', 'text-[#B91C1C]', 'text-[#4B5563]');
+
+    if (tone === 'success') {
+      statusMessage.classList.add('text-[#1F6B4D]');
+      return;
+    }
+
+    if (tone === 'error') {
+      statusMessage.classList.add('text-[#B91C1C]');
+      return;
+    }
+
+    statusMessage.classList.add('text-[#4B5563]');
+  };
+
+  const syncFormState = () => {
+    if (!inquiryType) return;
+
+    const isQuote = inquiryType.value === quoteLabel;
+    const isOther = inquiryType.value === otherLabel;
+    const isOtherYears = schoolYears?.value === 'other';
+
+    schoolScaleFields?.classList.toggle('hidden', !isQuote);
+
+    [schoolYears, avgClasses, avgStudents].forEach((field) => {
+      if (field) field.required = isQuote;
+    });
+
+    if (schoolYearsOther) {
+      schoolYearsOther.required = isQuote && isOtherYears;
+    }
+    schoolYearsOtherWrapper?.classList.toggle('hidden', !(isQuote && isOtherYears));
+
+    if (messageField) {
+      messageField.required = isOther;
+    }
+    messageRequiredMark?.classList.toggle('hidden', !isOther);
+  };
+
+  inquiryType?.addEventListener('change', syncFormState);
+  schoolYears?.addEventListener('change', syncFormState);
+  syncFormState();
+
+  form?.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    if (!form.reportValidity()) return;
+    if (!formEndpoint) {
+      setStatus('送信先フォームURLが未設定です。', 'error');
+      return;
+    }
+
+    const data = new FormData(form);
+    const inquiry = String(data.get('inquiry_type') || '');
+    const schoolYearsValue = data.get('school_years') === 'other'
+      ? String(data.get('school_years_other') || '')
+      : String(data.get('school_years') || '');
+    const schoolScaleSummary = inquiry === quoteLabel
+      ? [
+          `学年数: ${schoolYearsValue || '未入力'}`,
+          `1学年あたり平均学級数: ${data.get('avg_classes_per_grade') || '未入力'}`,
+          `1学級あたり平均生徒数: ${data.get('avg_students_per_class') || '未入力'}`,
+        ].join(' / ')
+      : '';
+
+    data.set('_subject', `${subjectPrefix}｜${inquiry}`);
+    data.set('school_scale_summary', schoolScaleSummary);
+
+    submitButton?.setAttribute('disabled', 'disabled');
+    submitButton?.classList.add('opacity-70', 'cursor-not-allowed');
+    setStatus('送信中です…');
+
+    try {
+      const response = await fetch(formEndpoint, {
+        method: 'POST',
+        body: data,
+        headers: {
+          Accept: 'application/json',
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error('Formspree submission failed');
+      }
+
+      form.reset();
+      syncFormState();
+      setStatus('送信が完了しました。担当者より折り返しご連絡します。', 'success');
+    } catch (error) {
+      console.error(error);
+      setStatus('送信に失敗しました。時間をおいて再度お試しください。', 'error');
+    } finally {
+      submitButton?.removeAttribute('disabled');
+      submitButton?.classList.remove('opacity-70', 'cursor-not-allowed');
+    }
+  });
+</script>

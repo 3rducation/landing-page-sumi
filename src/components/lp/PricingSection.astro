@@ -1,0 +1,41 @@
+---
+const { pricing } = Astro.props;
+---
+
+<section id="pricing" class="py-20 md:py-28 bg-[#F6F8F7]">
+  <div class="max-w-[1160px] mx-auto px-5 md:px-8">
+    <div class="text-center mb-12">
+      <p class="section-eyebrow copy-pre-line mb-3">{pricing.eyebrow}</p>
+      <h2 class="section-heading copy-pre-line">{pricing.heading}</h2>
+      <p class="copy-pre-line text-[#4B5563] mt-4 text-sm md:text-base max-w-xl mx-auto">{pricing.subCopy}</p>
+    </div>
+    <div class="grid md:grid-cols-3 gap-5 items-start">
+      {pricing.plans.map((plan) => (
+        <div class={`rounded-3xl p-7 border flex flex-col ${plan.highlighted ? 'bg-[#1F6B4D] border-[#1F6B4D] text-white shadow-xl' : 'bg-white border-[#E5E7EB]'}`}>
+          <div class="mb-5">
+            <h3 class={`text-lg font-bold mb-2 ${plan.highlighted ? 'text-white' : 'text-[#111827]'}`}>{plan.name}</h3>
+            <p class={`text-sm ${plan.highlighted ? 'text-white/80' : 'text-[#4B5563]'}`}>{plan.target}</p>
+          </div>
+          <ul class="space-y-2 mb-7 flex-1">
+            {plan.features.map((feature) => (
+              <li class={`flex items-center gap-2 text-sm ${plan.highlighted ? 'text-white' : 'text-[#4B5563]'}`}>
+                <span class={plan.highlighted ? 'text-[#A88B3D]' : 'text-[#1F6B4D]'}>✓</span>
+                {feature}
+              </li>
+            ))}
+          </ul>
+          <div class={`text-center text-sm font-medium mb-4 ${plan.highlighted ? 'text-white/70' : 'text-[#9CA3AF]'}`}>
+            料金：個別見積もり
+          </div>
+          <a
+            href="#contact"
+            class={`text-center text-sm font-semibold py-3 px-5 rounded-full transition-colors ${plan.highlighted ? 'bg-white text-[#1F6B4D] hover:bg-[#EAF6F0]' : 'bg-[#1F6B4D] text-white hover:bg-[#0F3D2E]'}`}
+          >
+            {plan.cta}
+          </a>
+        </div>
+      ))}
+    </div>
+    <p class="copy-pre-line text-center text-xs text-[#9CA3AF] mt-6">{pricing.note}</p>
+  </div>
+</section>

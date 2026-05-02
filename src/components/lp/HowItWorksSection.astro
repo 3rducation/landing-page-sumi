@@ -1,0 +1,23 @@
+---
+const { howItWorks } = Astro.props;
+---
+
+<section id="flow" class="py-20 md:py-28 bg-white">
+  <div class="max-w-[1160px] mx-auto px-5 md:px-8">
+    <div class="text-center mb-12">
+      <p class="section-eyebrow mb-3">使い方</p>
+      <h2 class="section-heading">5ステップで採点から返却まで</h2>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-6">
+      {howItWorks.map((step) => (
+        <div class="text-center">
+          <div class="w-12 h-12 rounded-full bg-[#1F6B4D] text-white font-bold text-sm flex items-center justify-center mx-auto mb-4 shadow-md">
+            {step.step}
+          </div>
+          <h3 class="copy-pre-line font-semibold text-[#111827] text-sm mb-2 leading-snug">{step.title}</h3>
+          <p class="copy-pre-line text-xs text-[#4B5563] leading-relaxed">{step.body}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

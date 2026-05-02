@@ -1,0 +1,118 @@
+---
+const { hero } = Astro.props;
+
+const statCards = [
+  { label: '採点済み', value: '142', unit: '枚' },
+  { label: 'クラス平均', value: '74.2', unit: '点' },
+  { label: '返却済み', value: '98', unit: '%' },
+];
+
+const impactCards = [
+  {
+    value: hero.stat.value,
+    label: hero.stat.label,
+    note: hero.stat.note,
+  },
+  {
+    value: `${statCards[0].value}${statCards[0].unit}`,
+    label: '採点済みサンプル',
+    note: 'ダッシュボード表示例',
+  },
+  {
+    value: `${statCards[2].value}${statCards[2].unit}`,
+    label: '返却完了率',
+    note: 'ダッシュボード表示例',
+  },
+];
+
+---
+
+<section class="bg-[#FAFAF7] pt-6 pb-16 md:pt-10 md:pb-32 overflow-hidden">
+  <div class="max-w-[1640px] mx-auto px-4 md:px-6 lg:px-8 xl:px-10 2xl:px-14">
+    <div class="flex flex-col gap-8 lg:flex-row lg:items-start lg:gap-10 xl:gap-12">
+      <div class="lg:flex-[0_0_43%] lg:min-w-0">
+        <span class="inline-block bg-[#EAF6F0] text-[#1F6B4D] text-xs font-semibold px-3 py-1.5 rounded-full mb-4">
+          {hero.badge}
+        </span>
+        <div class="lg:flex lg:items-start lg:gap-5 xl:gap-6">
+          <div class="lg:flex-1 lg:min-w-0">
+            <h1 class="copy-pre-line max-w-[8.2em] text-[1.7rem] sm:text-[1.9rem] md:max-w-none md:text-[clamp(2.05rem,3.75vw,4.3rem)] font-bold tracking-[-0.03em] text-[#111827] leading-[1.12] lg:leading-tight">
+              {hero.headline}
+            </h1>
+            <p class="copy-pre-line text-[#4B5563] text-base md:text-lg leading-relaxed mt-4 mb-6 md:mb-8 max-w-[34rem]">
+              {hero.subCopy}
+            </p>
+            <div class="flex flex-col sm:flex-row gap-3 mt-6">
+              <a href="#contact" class="btn-primary">{hero.primaryCta}</a>
+              <a href="#contact" class="btn-secondary">{hero.secondaryCta}</a>
+            </div>
+          </div>
+
+          <div class="hidden lg:flex lg:w-[10rem] lg:shrink-0 lg:flex-col lg:gap-3 xl:w-[11rem]">
+            {impactCards.map((card) => (
+              <div class="bg-white rounded-2xl shadow-lg p-3 lg:p-4 border border-[#E5E7EB]">
+                <p class="text-[1.9rem] xl:text-[2.2rem] font-bold text-[#1F6B4D] leading-none">{card.value}</p>
+                <p class="copy-pre-line text-[11px] xl:text-xs text-[#4B5563] mt-1.5 leading-snug">{card.label}</p>
+                <p class="copy-pre-line text-[10px] text-[#9CA3AF] mt-1 leading-snug">{card.note}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div class="grid grid-cols-3 gap-2 lg:hidden">
+          {impactCards.map((card) => (
+            <div class="bg-white rounded-2xl shadow-lg p-2.5 border border-[#E5E7EB] min-w-0">
+              <p class="text-[1.25rem] sm:text-[1.45rem] font-bold text-[#1F6B4D] leading-none">{card.value}</p>
+              <p class="text-[9px] sm:text-[10px] text-[#4B5563] mt-1.5 leading-snug">{card.label}</p>
+              <p class="text-[8px] sm:text-[9px] text-[#9CA3AF] mt-1 leading-snug">{card.note}</p>
+            </div>
+          ))}
+        </div>
+
+        <div class="hero-media mt-6 lg:hidden">
+          <img
+            src={hero.mediaSrc}
+            alt={hero.mediaAlt}
+            class="hero-media__frame hero-media__image w-full rounded-3xl shadow-xl border border-[#E5E7EB] object-contain"
+          />
+        </div>
+      </div>
+
+      <div class="hidden lg:block lg:flex-[0_0_57%] lg:min-w-0 lg:pr-6 xl:pr-10">
+        <div class="hero-media relative">
+          <img
+            src={hero.mediaSrc}
+            alt={hero.mediaAlt}
+            class="hero-media__frame hero-media__image hero-media__image--desktop w-full rounded-3xl shadow-xl border border-[#E5E7EB] object-cover object-top"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero-media {
+    min-width: 0;
+  }
+
+  .hero-media__frame {
+    max-width: 100%;
+    margin-left: 0;
+  }
+
+  .hero-media__image {
+    height: auto;
+    display: block;
+  }
+
+  .hero-media__image--desktop {
+    aspect-ratio: 16 / 9;
+  }
+
+  @media (min-width: 1280px) {
+    .hero-media__frame {
+      max-width: 100%;
+    }
+  }
+</style>

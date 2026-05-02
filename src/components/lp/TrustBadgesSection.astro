@@ -1,0 +1,16 @@
+---
+const { trustBadges } = Astro.props;
+---
+
+<section class="bg-white border-y border-[#E5E7EB] py-5">
+  <div class="max-w-[1160px] mx-auto px-5 md:px-8">
+    <div class="flex flex-wrap justify-center gap-3 md:gap-8">
+      {trustBadges.map((badge) => (
+        <span class="flex items-center gap-1.5 text-sm text-[#4B5563]">
+          <span class="text-[#1F6B4D] font-bold">✓</span>
+          {badge}
+        </span>
+      ))}
+    </div>
+  </div>
+</section>

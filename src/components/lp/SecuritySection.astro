@@ -1,0 +1,22 @@
+---
+const { security } = Astro.props;
+---
+
+<section class="py-20 md:py-28 bg-white">
+  <div class="max-w-[1160px] mx-auto px-5 md:px-8">
+    <div class="text-center mb-12">
+      <p class="section-eyebrow copy-pre-line mb-3">{security.eyebrow}</p>
+      <h2 class="section-heading copy-pre-line">{security.heading}</h2>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-6">
+      {security.items.map((item) => (
+        <div class="card">
+          <img src={item.iconSrc} alt="" class="w-10 h-10 mb-3 block" />
+          <h3 class="copy-pre-line font-semibold text-[#111827] text-sm mb-2">{item.title}</h3>
+          <p class="copy-pre-line text-xs text-[#4B5563] leading-relaxed">{item.body}</p>
+        </div>
+      ))}
+    </div>
+    <p class="copy-pre-line text-center text-xs text-[#9CA3AF] max-w-xl mx-auto">{security.note}</p>
+  </div>
+</section>

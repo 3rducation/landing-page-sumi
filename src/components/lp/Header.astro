@@ -1,0 +1,207 @@
+---
+const { nav } = Astro.props;
+---
+
+<header
+  id="site-header"
+  class="site-header sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-[#E5E7EB]"
+>
+  <div class="site-header__inner site-header__inner--desktop max-w-[1640px] mx-auto px-4 md:px-6 lg:px-8 xl:px-10 2xl:px-14 items-center justify-between gap-3">
+    <a href="/" class="site-header__brand flex items-center gap-2 shrink-0">
+      <img
+        id="site-logo"
+        src="/images/logo-transparent.png"
+        alt="3rducation"
+        class="site-header__logo w-auto"
+      />
+    </a>
+
+    <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-[#4B5563]">
+      {nav.map((item) => (
+        <a href={item.href} class="hover:text-[#1F6B4D] transition-colors">{item.label}</a>
+      ))}
+    </nav>
+
+    <a href="#contact" class="site-header__cta site-header__cta--desktop btn-primary text-sm">
+      資料請求・デモ相談
+    </a>
+  </div>
+
+  <div class="site-header__inner site-header__inner--mobile max-w-[1640px] mx-auto px-4 items-center gap-2">
+    <a href="/" class="site-header__brand site-header__brand--mobile flex items-center shrink-0">
+      <img
+        src="/images/logo-transparent.png"
+        alt="3rducation"
+        class="site-header__logo site-header__logo--mobile w-auto"
+      />
+    </a>
+    <a href="#contact" class="site-header__cta site-header__cta--mobile btn-primary text-sm md:hidden">
+      資料請求・デモ相談
+    </a>
+
+    <button
+      id="mobile-menu-btn"
+      class="site-header__menu-btn md:hidden p-2 rounded-lg hover:bg-[#F3FAF6] transition-colors shrink-0"
+      aria-label="メニューを開く"
+    >
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
+  </div>
+
+  <div id="mobile-menu" class="hidden md:hidden border-t border-[#E5E7EB] bg-white">
+    <div class="px-5 py-4 flex flex-col gap-4">
+      {nav.map((item) => (
+        <a href={item.href} class="text-sm font-medium text-[#4B5563] hover:text-[#1F6B4D]">{item.label}</a>
+      ))}
+      <a href="#contact" class="btn-primary text-sm text-center mt-2">資料請求・デモ相談</a>
+    </div>
+  </div>
+</header>
+
+<script>
+  const btn = document.getElementById('mobile-menu-btn');
+  const menu = document.getElementById('mobile-menu');
+
+  btn?.addEventListener('click', () => {
+    menu?.classList.toggle('hidden');
+  });
+
+  menu?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => menu?.classList.add('hidden'));
+  });
+
+  const header = document.getElementById('site-header');
+  const syncHeaderState = () => {
+    if (!header) return;
+    header.dataset.scrolled = window.scrollY > 24 ? 'true' : 'false';
+  };
+
+  syncHeaderState();
+  window.addEventListener('scroll', syncHeaderState, { passive: true });
+</script>
+
+<style>
+  .site-header {
+    --header-height-desktop: 5.4rem;
+    --header-height-desktop-scrolled: 4.7rem;
+    --logo-height-desktop: 14.0rem;
+    --logo-height-desktop-scrolled: 11.0rem;
+
+    --header-height-mobile: 4.8rem;
+    --header-height-mobile-scrolled: 4.15rem;
+    --logo-height-mobile: 2.45rem;
+    --logo-height-mobile-scrolled: 1.95rem;
+  }
+
+  .site-header,
+  .site-header__inner,
+  .site-header__logo {
+    transition:
+      height 0.24s ease,
+      padding 0.24s ease,
+      transform 0.24s ease;
+  }
+
+  .site-header__inner {
+    height: var(--header-height-desktop);
+  }
+
+  .site-header__inner--desktop {
+    display: flex;
+  }
+
+  .site-header__inner--mobile {
+    display: none;
+  }
+
+  .site-header__logo {
+    height: var(--logo-height-desktop);
+  }
+
+  .site-header__cta {
+    padding: 0.7rem 1.4rem;
+    font-size: 0.9375rem;
+  }
+
+  .site-header__cta--desktop {
+    display: inline-flex;
+  }
+
+  .site-header[data-scrolled="true"] .site-header__inner {
+    height: var(--header-height-desktop-scrolled);
+  }
+
+  .site-header[data-scrolled="true"] .site-header__logo {
+    height: var(--logo-height-desktop-scrolled);
+  }
+
+  @media (max-width: 767px) {
+    .site-header__inner--desktop {
+      display: none;
+    }
+
+    .site-header__inner--mobile {
+      display: flex;
+    }
+
+    .site-header__inner {
+      height: var(--header-height-mobile);
+      padding-left: 1rem;
+      padding-right: 1rem;
+      gap: 0.5rem;
+    }
+
+    .site-header__brand--mobile {
+      flex: 0 0 auto;
+      max-width: 34%;
+    }
+
+    .site-header__logo--mobile {
+      height: var(--logo-height-mobile);
+    }
+
+    .site-header__cta--mobile {
+      display: inline-flex;
+      flex: 1 1 0;
+      min-width: 0;
+      justify-content: center;
+      padding: 0.65rem 0.8rem;
+      font-size: 0.75rem;
+      line-height: 1.2;
+      white-space: nowrap;
+    }
+
+    .site-header__cta--desktop {
+      display: none;
+    }
+
+    .site-header__menu-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.75rem;
+      height: 2.75rem;
+      padding: 0;
+    }
+
+    .site-header[data-scrolled="true"] .site-header__inner {
+      height: var(--header-height-mobile-scrolled);
+    }
+
+    .site-header[data-scrolled="true"] .site-header__logo--mobile {
+      height: var(--logo-height-mobile-scrolled);
+    }
+
+    .site-header[data-scrolled="true"] .site-header__cta--mobile {
+      padding: 0.55rem 0.72rem;
+      font-size: 0.7rem;
+    }
+
+    .site-header[data-scrolled="true"] .site-header__menu-btn {
+      width: 2.5rem;
+      height: 2.5rem;
+    }
+  }
+</style>
