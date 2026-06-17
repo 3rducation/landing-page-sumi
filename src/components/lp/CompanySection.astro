@@ -1,0 +1,136 @@
+---
+const { company } = Astro.props;
+---
+
+<section id="about" class="company-section bg-white py-16 md:py-16">
+  <div class="mx-auto grid max-w-[1160px] gap-10 px-4 md:grid-cols-[0.9fr_1.1fr] md:px-8 lg:gap-16">
+    <div>
+      <p class="section-eyebrow mb-3">{company.eyebrow}</p>
+      <h2 class="section-heading copy-pre-line">{company.heading}</h2>
+    </div>
+
+    <div class="space-y-7">
+      <p class="copy-pre-line text-[0.95rem] leading-8 text-[#374151] md:text-base">
+        {company.lead}
+      </p>
+
+      <div class="company-principles grid gap-4 sm:grid-cols-2">
+        <div class="company-principle">
+          <p class="company-principle__label">{company.missionTitle}</p>
+          <p class="company-principle__body">{company.mission}</p>
+        </div>
+        <div class="company-principle">
+          <p class="company-principle__label">{company.visionTitle}</p>
+          <p class="company-principle__body">{company.vision}</p>
+        </div>
+      </div>
+
+      <ul class="company-values" aria-label="3rducationが大切にしていること">
+        {company.values.map((value) => (
+          <li>{value}</li>
+        ))}
+      </ul>
+    </div>
+  </div>
+
+  <div class="mx-auto mt-12 max-w-[1160px] px-4 md:mt-16 md:px-8">
+    <p class="company-profile__title">{company.profileTitle}</p>
+    <dl class="company-profile">
+      {company.profile.map((row) => (
+        <div class="company-profile__row">
+          <dt class="company-profile__label">{row.label}</dt>
+          <dd class="company-profile__value">{row.value}</dd>
+        </div>
+      ))}
+    </dl>
+  </div>
+</section>
+
+<style>
+  .company-section {
+    border-top: 1px solid rgba(31, 107, 77, 0.12);
+    border-bottom: 1px solid rgba(31, 107, 77, 0.12);
+  }
+
+  .company-principle {
+    border: 1px solid rgba(31, 107, 77, 0.16);
+    background: #fbfcfa;
+    border-radius: 8px;
+    padding: 1.25rem;
+  }
+
+  .company-principle__label {
+    margin-bottom: 0.65rem;
+    color: #1f6b4d;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .company-principle__body {
+    color: #111827;
+    font-size: 0.9rem;
+    font-weight: 600;
+    line-height: 1.85;
+  }
+
+  .company-values {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+
+  .company-values li {
+    border-left: 2px solid #a88b3d;
+    background: #fffdf4;
+    padding: 0.45rem 0.8rem;
+    color: #334155;
+    font-size: 0.82rem;
+    font-weight: 600;
+  }
+
+  .company-profile__title {
+    margin-bottom: 1rem;
+    color: #1f6b4d;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .company-profile {
+    border-top: 1px solid rgba(31, 107, 77, 0.16);
+  }
+
+  .company-profile__row {
+    display: grid;
+    grid-template-columns: 9rem 1fr;
+    gap: 1rem;
+    border-bottom: 1px solid rgba(31, 107, 77, 0.12);
+    padding: 0.95rem 0.25rem;
+  }
+
+  .company-profile__label {
+    color: #1f6b4d;
+    font-size: 0.85rem;
+    font-weight: 700;
+  }
+
+  .company-profile__value {
+    color: #334155;
+    font-size: 0.9rem;
+    line-height: 1.7;
+  }
+
+  @media (max-width: 767px) {
+    .company-values {
+      display: grid;
+    }
+
+    .company-profile__row {
+      grid-template-columns: 1fr;
+      gap: 0.3rem;
+    }
+  }
+</style>

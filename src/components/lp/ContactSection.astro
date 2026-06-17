@@ -4,7 +4,7 @@ import { FORMSPREE_ENDPOINT, CONTACT_SUBJECT_PREFIX } from '../../config/contact
 const { contact } = Astro.props;
 ---
 
-<section id="contact" class="py-20 md:py-28 bg-[#FAFAF7]">
+<section id="contact" class="py-20 md:py-16 bg-[#FAFAF7]">
   <div class="max-w-[1160px] mx-auto px-5 md:px-8">
     <div class="text-center mb-12">
       <p class="section-eyebrow copy-pre-line mb-3">{contact.eyebrow}</p>
@@ -16,7 +16,7 @@ const { contact } = Astro.props;
       id="contact-form"
       action={FORMSPREE_ENDPOINT}
       method="POST"
-      class="max-w-xl mx-auto bg-white rounded-3xl shadow-sm border border-[#E5E7EB] p-8 space-y-5"
+      class="max-w-xl mx-auto bg-white rounded-lg shadow-sm border border-[#E5E7EB] p-5 md:p-8 space-y-5"
     >
       <input type="hidden" name="_subject" value={CONTACT_SUBJECT_PREFIX} />
 
@@ -30,7 +30,7 @@ const { contact } = Astro.props;
             name="school"
             required
             placeholder="○○高等学校"
-            class="w-full border border-[#E5E7EB] rounded-xl px-4 py-2.5 text-sm outline-none focus:border-[#1F6B4D] focus:ring-1 focus:ring-[#1F6B4D] transition"
+            class="w-full border border-[#E5E7EB] rounded-lg px-4 py-2.5 text-sm outline-none focus:border-[#1F6B4D] focus:ring-1 focus:ring-[#1F6B4D] transition"
           />
         </div>
         <div>
@@ -39,7 +39,7 @@ const { contact } = Astro.props;
             type="text"
             name="department"
             placeholder="教務主任"
-            class="w-full border border-[#E5E7EB] rounded-xl px-4 py-2.5 text-sm outline-none focus:border-[#1F6B4D] focus:ring-1 focus:ring-[#1F6B4D] transition"
+            class="w-full border border-[#E5E7EB] rounded-lg px-4 py-2.5 text-sm outline-none focus:border-[#1F6B4D] focus:ring-1 focus:ring-[#1F6B4D] transition"
           />
         </div>
       </div>
@@ -53,7 +53,7 @@ const { contact } = Astro.props;
           name="name"
           required
           placeholder="山田 太郎"
-          class="w-full border border-[#E5E7EB] rounded-xl px-4 py-2.5 text-sm outline-none focus:border-[#1F6B4D] focus:ring-1 focus:ring-[#1F6B4D] transition"
+          class="w-full border border-[#E5E7EB] rounded-lg px-4 py-2.5 text-sm outline-none focus:border-[#1F6B4D] focus:ring-1 focus:ring-[#1F6B4D] transition"
         />
       </div>
 
@@ -66,7 +66,7 @@ const { contact } = Astro.props;
           name="email"
           required
           placeholder="taro@school.ac.jp"
-          class="w-full border border-[#E5E7EB] rounded-xl px-4 py-2.5 text-sm outline-none focus:border-[#1F6B4D] focus:ring-1 focus:ring-[#1F6B4D] transition"
+          class="w-full border border-[#E5E7EB] rounded-lg px-4 py-2.5 text-sm outline-none focus:border-[#1F6B4D] focus:ring-1 focus:ring-[#1F6B4D] transition"
         />
       </div>
 
@@ -79,7 +79,7 @@ const { contact } = Astro.props;
           name="tel"
           required
           placeholder="03-0000-0000"
-          class="w-full border border-[#E5E7EB] rounded-xl px-4 py-2.5 text-sm outline-none focus:border-[#1F6B4D] focus:ring-1 focus:ring-[#1F6B4D] transition"
+          class="w-full border border-[#E5E7EB] rounded-lg px-4 py-2.5 text-sm outline-none focus:border-[#1F6B4D] focus:ring-1 focus:ring-[#1F6B4D] transition"
         />
       </div>
 
@@ -90,7 +90,7 @@ const { contact } = Astro.props;
         <select
           name="inquiry_type"
           required
-          class="w-full border border-[#E5E7EB] rounded-xl px-4 py-2.5 text-sm outline-none focus:border-[#1F6B4D] focus:ring-1 focus:ring-[#1F6B4D] transition bg-white"
+          class="w-full border border-[#E5E7EB] rounded-lg px-4 py-2.5 text-sm outline-none focus:border-[#1F6B4D] focus:ring-1 focus:ring-[#1F6B4D] transition bg-white"
         >
           <option value="">選択してください</option>
           {contact.inquiryTypes.map((type) => (
@@ -101,7 +101,7 @@ const { contact } = Astro.props;
 
       <div
         id="school-scale-fields"
-        class="hidden space-y-5 rounded-2xl border border-[#E5E7EB] bg-[#F8FBF9] p-5"
+        class="hidden space-y-5 rounded-lg border border-[#E5E7EB] bg-[#F8FBF9] p-5"
       >
         <p class="text-sm font-semibold text-[#1F6B4D]">学校規模</p>
 
@@ -112,7 +112,7 @@ const { contact } = Astro.props;
           <select
             id="school-years"
             name="school_years"
-            class="w-full border border-[#E5E7EB] rounded-xl px-4 py-2.5 text-sm outline-none focus:border-[#1F6B4D] focus:ring-1 focus:ring-[#1F6B4D] transition bg-white"
+            class="w-full border border-[#E5E7EB] rounded-lg px-4 py-2.5 text-sm outline-none focus:border-[#1F6B4D] focus:ring-1 focus:ring-[#1F6B4D] transition bg-white"
           >
             <option value="">選択してください</option>
             <option value="3">3</option>
@@ -130,7 +130,7 @@ const { contact } = Astro.props;
             id="school-years-other"
             name="school_years_other"
             placeholder="例: 4"
-            class="w-full border border-[#E5E7EB] rounded-xl px-4 py-2.5 text-sm outline-none focus:border-[#1F6B4D] focus:ring-1 focus:ring-[#1F6B4D] transition"
+            class="w-full border border-[#E5E7EB] rounded-lg px-4 py-2.5 text-sm outline-none focus:border-[#1F6B4D] focus:ring-1 focus:ring-[#1F6B4D] transition"
           />
         </div>
 
@@ -141,7 +141,7 @@ const { contact } = Astro.props;
           <select
             id="avg-classes"
             name="avg_classes_per_grade"
-            class="w-full border border-[#E5E7EB] rounded-xl px-4 py-2.5 text-sm outline-none focus:border-[#1F6B4D] focus:ring-1 focus:ring-[#1F6B4D] transition bg-white"
+            class="w-full border border-[#E5E7EB] rounded-lg px-4 py-2.5 text-sm outline-none focus:border-[#1F6B4D] focus:ring-1 focus:ring-[#1F6B4D] transition bg-white"
           >
             <option value="">選択してください</option>
             {Array.from({ length: 20 }, (_, index) => (
@@ -157,7 +157,7 @@ const { contact } = Astro.props;
           <select
             id="avg-students"
             name="avg_students_per_class"
-            class="w-full border border-[#E5E7EB] rounded-xl px-4 py-2.5 text-sm outline-none focus:border-[#1F6B4D] focus:ring-1 focus:ring-[#1F6B4D] transition bg-white"
+            class="w-full border border-[#E5E7EB] rounded-lg px-4 py-2.5 text-sm outline-none focus:border-[#1F6B4D] focus:ring-1 focus:ring-[#1F6B4D] transition bg-white"
           >
             <option value="">選択してください</option>
             {Array.from({ length: 50 }, (_, index) => (
@@ -176,7 +176,7 @@ const { contact } = Astro.props;
           name="message"
           rows="4"
           placeholder="ご質問・ご要望などをご記入ください"
-          class="w-full border border-[#E5E7EB] rounded-xl px-4 py-2.5 text-sm outline-none focus:border-[#1F6B4D] focus:ring-1 focus:ring-[#1F6B4D] transition resize-none"
+          class="w-full border border-[#E5E7EB] rounded-lg px-4 py-2.5 text-sm outline-none focus:border-[#1F6B4D] focus:ring-1 focus:ring-[#1F6B4D] transition resize-none"
         ></textarea>
       </div>
 

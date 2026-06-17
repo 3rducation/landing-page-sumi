@@ -57,6 +57,35 @@ const websiteSchema = {
   <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
 </head>
 <body class="antialiased">
+  <canvas id="fluid-bg" aria-hidden="true"></canvas>
+  <div id="washi-texture" aria-hidden="true"></div>
   <slot />
+  <script src="/js/fluid-sim.js" is:inline defer></script>
 </body>
 </html>
+
+<style is:global>
+  /* 墨流し背景キャンバス（ページ全体の固定背景） */
+  #fluid-bg {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -2;
+    pointer-events: none;
+    display: block;
+  }
+
+  /* 和紙テクスチャ（墨の上に薄く重ね、白い紙の質感を出す） */
+  #washi-texture {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.55;
+    mix-blend-mode: multiply;
+    background-image: url("/images/washi.svg");
+    background-repeat: repeat;
+    background-size: 240px 240px;
+  }
+</style>

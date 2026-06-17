@@ -2,7 +2,7 @@
 const { pricing } = Astro.props;
 ---
 
-<section id="pricing" class="py-20 md:py-28 bg-[#F6F8F7]">
+<section id="pricing" class="py-20 md:py-16 bg-[#F6F8F7]">
   <div class="max-w-[1160px] mx-auto px-5 md:px-8">
     <div class="text-center mb-12">
       <p class="section-eyebrow copy-pre-line mb-3">{pricing.eyebrow}</p>
@@ -11,7 +11,7 @@ const { pricing } = Astro.props;
     </div>
     <div class="grid md:grid-cols-3 gap-5 items-start">
       {pricing.plans.map((plan) => (
-        <div class={`rounded-3xl p-7 border flex flex-col ${plan.highlighted ? 'bg-[#1F6B4D] border-[#1F6B4D] text-white shadow-xl' : 'bg-white border-[#E5E7EB]'}`}>
+        <div class={`rounded-lg p-5 md:p-7 border flex flex-col ${plan.highlighted ? 'bg-[#1F6B4D] border-[#1F6B4D] text-white shadow-lg' : 'bg-white border-[#E5E7EB]'}`}>
           <div class="mb-5">
             <h3 class={`text-lg font-bold mb-2 ${plan.highlighted ? 'text-white' : 'text-[#111827]'}`}>{plan.name}</h3>
             <p class={`text-sm ${plan.highlighted ? 'text-white/80' : 'text-[#4B5563]'}`}>{plan.target}</p>
@@ -29,7 +29,7 @@ const { pricing } = Astro.props;
           </div>
           <a
             href="#contact"
-            class={`text-center text-sm font-semibold py-3 px-5 rounded-full transition-colors ${plan.highlighted ? 'bg-white text-[#1F6B4D] hover:bg-[#EAF6F0]' : 'bg-[#1F6B4D] text-white hover:bg-[#0F3D2E]'}`}
+            class={`text-center text-sm font-semibold py-3 px-5 rounded-lg transition-colors ${plan.highlighted ? 'bg-white text-[#1F6B4D] hover:bg-[#EAF6F0]' : 'bg-[#1F6B4D] text-white hover:bg-[#0F3D2E]'}`}
           >
             {plan.cta}
           </a>

@@ -13,6 +13,7 @@ import ProductMockupSection from '../components/lp/ProductMockupSection.astro';
 import HowItWorksSection from '../components/lp/HowItWorksSection.astro';
 import EffectsSection from '../components/lp/EffectsSection.astro';
 import SecuritySection from '../components/lp/SecuritySection.astro';
+import CompanySection from '../components/lp/CompanySection.astro';
 import PricingSection from '../components/lp/PricingSection.astro';
 import FaqSection from '../components/lp/FaqSection.astro';
 import FinalCtaSection from '../components/lp/FinalCtaSection.astro';
@@ -23,6 +24,7 @@ import {
   nav,
   hero,
   trustBadges,
+  company,
   problems,
   comparison,
   solution,
@@ -45,7 +47,7 @@ import {
   keywords={meta.keywords}
 >
   <Header nav={nav} />
-  <HeroSection hero={hero} />
+  <HeroSection hero={hero} company={company} />
   <TrustBadgesSection trustBadges={trustBadges} />
   <ProblemSection problems={problems} />
   <ComparisonSection comparison={comparison} />
@@ -58,6 +60,7 @@ import {
   <SecuritySection security={security} />
   <PricingSection pricing={pricing} />
   <FaqSection faqs={faqs} />
+  <CompanySection company={company} />
   <FinalCtaSection />
   <ContactSection contact={contact} />
   <Footer footer={footer} />

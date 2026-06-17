@@ -2,7 +2,7 @@
 const { comparison } = Astro.props;
 ---
 
-<section class="py-14 md:py-28 bg-white">
+<section class="py-14 md:py-16 bg-white">
   <div class="max-w-[1160px] mx-auto px-4 md:px-8">
     <div class="text-center mb-8 md:mb-12">
       <p class="section-eyebrow copy-pre-line mb-3">{comparison.eyebrow}</p>
@@ -13,7 +13,7 @@ const { comparison } = Astro.props;
     </div>
     <div class="md:hidden space-y-3">
       {comparison.items.map((item) => (
-        <div class="rounded-2xl border border-[#E5E7EB] overflow-hidden">
+        <div class="rounded-lg border border-[#E5E7EB] overflow-hidden">
           <div class="bg-[#FAFAF7] px-4 py-3">
             <h3 class="copy-pre-line font-semibold text-sm text-[#111827]">{item.label}</h3>
           </div>
@@ -35,8 +35,8 @@ const { comparison } = Astro.props;
         <thead>
           <tr class="text-sm">
             <th class="text-left py-3 px-4 text-[#9CA3AF] font-medium w-1/3"></th>
-            <th class="py-3 px-4 text-center bg-[#F6F8F7] rounded-tl-xl text-[#4B5563] font-semibold">従来のOCR採点</th>
-            <th class="py-3 px-4 text-center bg-[#EAF6F0] rounded-tr-xl text-[#1F6B4D] font-semibold">AI自動採点「澄」</th>
+            <th class="py-3 px-4 text-center bg-[#F6F8F7] rounded-tl-lg text-[#4B5563] font-semibold">従来のOCR採点</th>
+            <th class="py-3 px-4 text-center bg-[#EAF6F0] rounded-tr-lg text-[#1F6B4D] font-semibold">AI自動採点「澄」</th>
           </tr>
         </thead>
         <tbody>

@@ -21,19 +21,30 @@
 
 html {
   scroll-behavior: smooth;
+  /* clip は横はみ出しを防ぎつつ position: sticky を壊さない（hidden だとヘッダー固定が効かない） */
+  overflow-x: clip;
+  /* 墨流し背景の下地（和紙のような淡い色） */
+  background-color: #f4f7f1;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 body {
   font-family: var(--font-family-sans);
   color: var(--color-text-main);
   line-height: 1.8;
-  background-color: #ffffff;
+  background-color: transparent;
+  overflow-x: clip;
 }
 
 .section-eyebrow {
-  font-size: clamp(1.1rem, 3.5vw, 2rem);
-  font-weight: 600;
-  letter-spacing: 0.08em;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--color-brand-green);
 }
@@ -43,28 +54,37 @@ body {
 }
 
 .section-heading {
-  font-size: clamp(1.15rem, 4.2vw, 2.25rem);
+  font-size: 1.6rem;
   font-weight: 700;
   color: var(--color-text-main);
   line-height: 1.4;
+  letter-spacing: 0;
 }
 
 .copy-pre-line {
   white-space: pre-line;
 }
 
+img,
+svg,
+video,
+canvas {
+  max-width: 100%;
+}
+
 .card {
   background: #ffffff;
   border: 1px solid var(--color-border-gray);
-  border-radius: 20px;
+  border-radius: 8px;
   padding: 20px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
-  transition: box-shadow 0.2s, transform 0.2s;
+  box-shadow: 0 1px 0 rgba(15, 61, 46, 0.04);
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
 }
 
 .card:hover {
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.09);
-  transform: translateY(-2px);
+  border-color: rgba(31, 107, 77, 0.24);
+  box-shadow: 0 10px 28px rgba(15, 61, 46, 0.08);
+  transform: translateY(-1px);
 }
 
 .btn-primary {
@@ -75,13 +95,14 @@ body {
   color: #ffffff;
   font-weight: 600;
   padding: 0.75rem 1.75rem;
-  border-radius: 9999px;
-  transition: background-color 0.2s;
+  border-radius: 8px;
+  transition: background-color 0.2s, transform 0.2s;
   white-space: nowrap;
 }
 
 .btn-primary:hover {
   background-color: var(--color-deep-green);
+  transform: translateY(-1px);
 }
 
 .btn-secondary {
@@ -92,18 +113,49 @@ body {
   color: var(--color-deep-green);
   font-weight: 600;
   padding: 0.75rem 1.75rem;
-  border-radius: 9999px;
-  border: 1.5px solid var(--color-brand-green);
-  transition: background-color 0.2s;
+  border-radius: 8px;
+  border: 1px solid rgba(31, 107, 77, 0.45);
+  transition: background-color 0.2s, transform 0.2s;
   white-space: nowrap;
 }
 
 .btn-secondary:hover {
   background-color: var(--color-mist-green);
+  transform: translateY(-1px);
 }
 
 @media (min-width: 768px) {
+  .section-heading {
+    font-size: 2.25rem;
+  }
+
   .card {
     padding: 28px;
+  }
+}
+
+@media (max-width: 767px) {
+  body {
+    width: 100%;
+    max-width: 100vw;
+    line-height: 1.75;
+  }
+
+  p,
+  h1,
+  h2,
+  h3,
+  li,
+  a,
+  span {
+    overflow-wrap: anywhere;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    width: 100%;
+    min-height: 3rem;
+    padding-inline: 1rem;
+    text-align: center;
   }
 }

@@ -1,67 +1,60 @@
 ---
-const { hero } = Astro.props;
+const { hero, company } = Astro.props;
 
 const impactCards = hero.impactCards ?? [];
 
 ---
 
-<section class="bg-[#FAFAF7] pt-6 pb-16 md:pt-10 md:pb-32 overflow-hidden">
-  <div class="max-w-[1640px] mx-auto px-4 md:px-6 lg:px-8 xl:px-10 2xl:px-14">
-    <div class="flex flex-col gap-8 lg:flex-row lg:items-start lg:gap-10 xl:gap-12">
-      <div class="lg:flex-[0_0_43%] lg:min-w-0">
-        <span class="inline-block bg-[#EAF6F0] text-[#1F6B4D] text-xs font-semibold px-3 py-1.5 rounded-full mb-4">
+<section class="hero-section relative overflow-hidden">
+  <div class="hero-shell relative mx-auto flex w-full max-w-[1480px] flex-col justify-center px-4 pb-7 pt-5 md:px-6 md:pb-7 md:pt-6">
+    <div class="grid gap-6 lg:grid-cols-[0.72fr_1.28fr] lg:items-center lg:gap-8">
+      <div class="hero-copy min-w-0">
+        <span class="hero-badge">
           {hero.badge}
         </span>
-        <div class="lg:flex lg:items-start lg:gap-5 xl:gap-6">
-          <div class="lg:flex-1 lg:min-w-0">
-            <h1 class="copy-pre-line max-w-[8.2em] text-[1.7rem] sm:text-[1.9rem] md:max-w-none md:text-[clamp(2.05rem,3.75vw,4.3rem)] font-bold tracking-[-0.03em] text-[#111827] leading-[1.12] lg:leading-tight">
-              {hero.headline}
-            </h1>
-            <p class="copy-pre-line text-[#4B5563] text-base md:text-lg leading-relaxed mt-4 mb-6 md:mb-8 max-w-[34rem]">
-              {hero.subCopy}
-            </p>
-            <div class="flex flex-col sm:flex-row gap-3 mt-6">
-              <a href="#contact" class="btn-primary">{hero.primaryCta}</a>
-              <a href="#contact" class="btn-secondary">{hero.secondaryCta}</a>
-            </div>
-          </div>
 
-          <div class="hidden lg:flex lg:w-[10rem] lg:shrink-0 lg:flex-col lg:gap-3 xl:w-[11rem]">
-            {impactCards.map((card) => (
-              <div class="bg-white rounded-2xl shadow-lg p-3 lg:p-4 border border-[#E5E7EB]">
-                <p class="text-[1.9rem] xl:text-[2.2rem] font-bold text-[#1F6B4D] leading-none">{card.value}</p>
-                <p class="copy-pre-line text-[11px] xl:text-xs text-[#4B5563] mt-1.5 leading-snug">{card.label}</p>
-                <p class="copy-pre-line text-[10px] text-[#9CA3AF] mt-1 leading-snug">{card.note}</p>
-              </div>
-            ))}
-          </div>
+        <h1 class="copy-pre-line mt-3 text-[2.05rem] font-bold leading-[1.16] text-[#111827] sm:text-[2.35rem] md:text-[2.75rem] lg:text-[2.5rem] xl:text-[2.8rem]">
+          {hero.headline}
+        </h1>
+
+        <p class="copy-pre-line mt-3 max-w-[37rem] text-[0.92rem] leading-[1.6] text-[#374151] md:text-[0.95rem]">
+          {hero.subCopy}
+        </p>
+
+        <div class="hero-about">
+          <p class="hero-about__label">3rducationとは</p>
+          <p class="copy-pre-line hero-about__body">
+            {hero.companyLead}
+          </p>
+          <a href="#about" class="hero-about__link">会社概要を見る<span aria-hidden="true">→</span></a>
         </div>
 
-        <div class="grid grid-cols-3 gap-2 lg:hidden">
+        <div class="mt-4 flex flex-col gap-3 sm:flex-row">
+          <a href="#contact" class="btn-primary">{hero.primaryCta}</a>
+        </div>
+
+        <div class="hero-stats mt-4 grid gap-3 sm:grid-cols-3 lg:max-w-[34rem]">
           {impactCards.map((card) => (
-            <div class="bg-white rounded-2xl shadow-lg p-2.5 border border-[#E5E7EB] min-w-0">
-              <p class="text-[1.25rem] sm:text-[1.45rem] font-bold text-[#1F6B4D] leading-none">{card.value}</p>
-              <p class="text-[9px] sm:text-[10px] text-[#4B5563] mt-1.5 leading-snug">{card.label}</p>
-              <p class="text-[8px] sm:text-[9px] text-[#9CA3AF] mt-1 leading-snug">{card.note}</p>
+            <div class="hero-stat">
+              <p class="hero-stat__value">{card.value}</p>
+              <p class="copy-pre-line hero-stat__label">{card.label}</p>
+              <p class="copy-pre-line hero-stat__note">{card.note}</p>
             </div>
           ))}
         </div>
-
-        <div class="hero-media mt-6 lg:hidden">
-          <img
-            src={hero.mediaSrc}
-            alt={hero.mediaAlt}
-            class="hero-media__frame hero-media__image w-full rounded-3xl shadow-xl border border-[#E5E7EB] object-contain"
-          />
-        </div>
       </div>
 
-      <div class="hidden lg:block lg:flex-[0_0_57%] lg:min-w-0 lg:pr-6 xl:pr-10">
-        <div class="hero-media relative">
+      <div class="hero-visual min-w-0">
+        <div class="hero-visual__panel">
+          <div class="hero-visual__bar" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
           <img
             src={hero.mediaSrc}
             alt={hero.mediaAlt}
-            class="hero-media__frame hero-media__image hero-media__image--desktop w-full rounded-3xl shadow-xl border border-[#E5E7EB] object-cover object-top"
+            class="hero-media__image"
           />
         </div>
       </div>
@@ -70,27 +63,376 @@ const impactCards = hero.impactCards ?? [];
 </section>
 
 <style>
-  .hero-media {
-    min-width: 0;
+  .hero-section {
+    border-bottom: 1px solid rgba(31, 107, 77, 0.1);
   }
 
-  .hero-media__frame {
-    max-width: 100%;
-    margin-left: 0;
+  .hero-shell {
+    min-height: 32rem;
+  }
+
+  @media (min-width: 768px) {
+    .hero-shell {
+      min-height: calc(100svh - 5.4rem);
+    }
+  }
+
+  .sumi-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    pointer-events: none;
+  }
+
+  .sumi-canvas--page {
+    opacity: 0.5;
+  }
+
+  .sumi-canvas--stage {
+    opacity: 1;
+    border-radius: 999px;
+  }
+
+  .sumi-filter-svg {
+    position: absolute;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+  }
+
+  .hero-section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(31, 107, 77, 0.045) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(31, 107, 77, 0.04) 1px, transparent 1px);
+    background-size: 72px 72px;
+    opacity: 0.42;
+    mask-image: linear-gradient(180deg, #000 0%, transparent 72%);
+    pointer-events: none;
+  }
+
+  /* 文字の裏だけ和紙のヴェールを敷き、墨を淡くして可読性を確保（余白側は墨をそのまま見せる） */
+  .hero-copy {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .hero-copy::before {
+    content: "";
+    position: absolute;
+    inset: -1.6rem -2.6rem -1.4rem -2rem;
+    z-index: -1;
+    background: radial-gradient(118% 96% at 24% 42%,
+      rgba(249, 251, 247, 0.62) 0%,
+      rgba(249, 251, 247, 0.42) 42%,
+      rgba(249, 251, 247, 0.16) 66%,
+      transparent 84%);
+    pointer-events: none;
+  }
+
+  .hero-ink {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .sumi-wash {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    filter: url("#sumi-paper-filter");
+    opacity: 0.98;
+  }
+
+  .sumi-wash::before,
+  .sumi-wash::after,
+  .sumi-wash__stream {
+    content: "";
+    position: absolute;
+    display: block;
+    inset: -18%;
+    background-repeat: no-repeat;
+    mix-blend-mode: multiply;
+    will-change: transform, opacity;
+  }
+
+  .sumi-wash::before {
+    background:
+      radial-gradient(ellipse at 20% 38%, rgba(31, 107, 77, 0.14) 0 18%, transparent 44%),
+      radial-gradient(ellipse at 68% 30%, rgba(47, 158, 115, 0.13) 0 20%, transparent 48%),
+      radial-gradient(ellipse at 76% 78%, rgba(31, 107, 77, 0.12) 0 16%, transparent 44%);
+    filter: blur(22px);
+    animation: sumiFloatA 26s ease-in-out infinite alternate;
+  }
+
+  .sumi-wash::after {
+    background:
+      linear-gradient(104deg, transparent 8%, rgba(31, 107, 77, 0.22) 17%, rgba(143, 199, 181, 0.1) 29%, transparent 43%),
+      linear-gradient(74deg, transparent 28%, rgba(31, 107, 77, 0.16) 37%, rgba(255, 255, 246, 0.28) 45%, transparent 62%),
+      linear-gradient(126deg, transparent 46%, rgba(47, 158, 115, 0.14) 54%, transparent 72%);
+    filter: blur(18px);
+    opacity: 0.78;
+    animation: sumiFloatB 32s ease-in-out infinite alternate;
+  }
+
+  .sumi-wash__stream--green {
+    background:
+      radial-gradient(ellipse at 33% 46%, rgba(31, 107, 77, 0.27) 0 6%, rgba(31, 107, 77, 0.16) 14%, transparent 34%),
+      radial-gradient(ellipse at 62% 58%, rgba(31, 107, 77, 0.2) 0 5%, rgba(105, 168, 146, 0.15) 17%, transparent 38%);
+    filter: blur(24px);
+    animation: sumiFloatC 35s ease-in-out infinite alternate;
+  }
+
+  .sumi-wash__stream--blue {
+    background:
+      radial-gradient(ellipse at 45% 35%, rgba(89, 179, 205, 0.2) 0 8%, transparent 35%),
+      linear-gradient(100deg, transparent 18%, rgba(89, 179, 205, 0.12) 29%, transparent 52%);
+    filter: blur(28px);
+    animation: sumiFloatA 38s ease-in-out -9s infinite alternate;
+  }
+
+  .sumi-wash__stream--gold {
+    background:
+      radial-gradient(ellipse at 42% 66%, rgba(231, 214, 120, 0.17) 0 7%, transparent 34%),
+      linear-gradient(118deg, transparent 26%, rgba(231, 214, 120, 0.1) 39%, transparent 58%);
+    filter: blur(30px);
+    animation: sumiFloatB 42s ease-in-out -14s infinite alternate;
+  }
+
+  .sumi-wash--page {
+    opacity: 0.52;
+  }
+
+  .sumi-wash--stage {
+    opacity: 1;
+  }
+
+  .sumi-wash--stage::before,
+  .sumi-wash--stage::after,
+  .sumi-wash--stage .sumi-wash__stream {
+    inset: -24%;
+  }
+
+  .sumi-wash--stage::before {
+    opacity: 1;
+  }
+
+  .sumi-wash--stage::after {
+    opacity: 0.94;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    border-left: 3px solid #a88b3d;
+    background: rgba(255, 255, 255, 0.72);
+    padding: 0.35rem 0.75rem;
+    color: #1f6b4d;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+  }
+
+  .hero-about {
+    margin-top: 0.85rem;
+    max-width: 35rem;
+    border-left: 3px solid rgba(168, 139, 61, 0.76);
+    border-radius: 0 8px 8px 0;
+    background: rgba(255, 255, 255, 0.66);
+    padding: 0.65rem 0.85rem;
+    backdrop-filter: blur(10px);
+  }
+
+  .hero-about__label {
+    color: #1f6b4d;
+    font-size: 0.76rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+  }
+
+  .hero-about__body {
+    margin-top: 0.3rem;
+    color: #374151;
+    font-size: 0.8rem;
+    line-height: 1.6;
+  }
+
+  .hero-about__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    margin-top: 0.45rem;
+    color: #1f6b4d;
+    font-size: 0.76rem;
+    font-weight: 700;
+    transition: gap 0.2s ease, color 0.2s ease;
+  }
+
+  .hero-about__link:hover {
+    gap: 0.5rem;
+    color: #0f3d2e;
+  }
+
+  .hero-stat {
+    border: 1px solid rgba(31, 107, 77, 0.15);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.78);
+    padding: 0.75rem 0.85rem;
+    backdrop-filter: blur(10px);
+  }
+
+  .hero-stat__value {
+    color: #1f6b4d;
+    font-size: 1.35rem;
+    font-weight: 800;
+    line-height: 1;
+  }
+
+  .hero-stat__label {
+    margin-top: 0.45rem;
+    color: #111827;
+    font-size: 0.78rem;
+    font-weight: 700;
+    line-height: 1.45;
+  }
+
+  .hero-stat__note {
+    margin-top: 0.25rem;
+    color: #6b7280;
+    font-size: 0.68rem;
+    line-height: 1.45;
+  }
+
+  .hero-visual {
+    position: relative;
+    display: grid;
+    align-items: center;
+    min-height: 27rem;
+  }
+
+  .hero-visual__panel {
+    position: relative;
+    z-index: 2;
+    overflow: hidden;
+    border: 1px solid rgba(31, 107, 77, 0.13);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.86);
+    box-shadow: 0 22px 72px rgba(15, 61, 46, 0.16);
+    isolation: isolate;
+  }
+
+  .hero-visual__bar {
+    display: flex;
+    gap: 0.45rem;
+    border-bottom: 1px solid rgba(31, 107, 77, 0.1);
+    padding: 0.75rem 0.9rem;
+  }
+
+  .hero-visual__bar span {
+    width: 0.52rem;
+    height: 0.52rem;
+    border-radius: 999px;
+    background: #d5ded8;
+  }
+
+  .hero-visual__bar span:nth-child(2) {
+    background: #e9d8a6;
+  }
+
+  .hero-visual__bar span:nth-child(3) {
+    background: #9bd6ca;
   }
 
   .hero-media__image {
-    height: auto;
     display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    object-position: top;
   }
 
-  .hero-media__image--desktop {
-    aspect-ratio: 16 / 9;
+  @keyframes sumiFloatA {
+    0% {
+      transform: translate3d(-8%, -5%, 0) scale(1.08) rotate(-2deg);
+      opacity: 0.82;
+    }
+    45% {
+      transform: translate3d(8%, 5%, 0) scale(1.2) rotate(2.2deg);
+      opacity: 0.95;
+    }
+    100% {
+      transform: translate3d(3%, -8%, 0) scale(1.14) rotate(-1deg);
+      opacity: 0.86;
+    }
   }
 
-  @media (min-width: 1280px) {
-    .hero-media__frame {
+  @keyframes sumiFloatB {
+    0% {
+      transform: translate3d(7%, 8%, 0) scale(1.12) rotate(1.4deg);
+    }
+    50% {
+      transform: translate3d(-8%, -4%, 0) scale(1.23) rotate(-2deg);
+    }
+    100% {
+      transform: translate3d(9%, -6%, 0) scale(1.16) rotate(1.2deg);
+    }
+  }
+
+  @keyframes sumiFloatC {
+    0% {
+      transform: translate3d(-7%, 6%, 0) scale(1.1) skewX(-3deg);
+      opacity: 0.72;
+    }
+    100% {
+      transform: translate3d(8%, -7%, 0) scale(1.24) skewX(3deg);
+      opacity: 0.9;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .hero-section {
+      width: 100%;
+      max-width: 100vw;
+      overflow: hidden;
+    }
+
+    .hero-copy,
+    .hero-visual,
+    .hero-visual__panel,
+    .hero-stats {
+      width: 100%;
+      max-width: calc(100vw - 2rem);
+      min-width: 0;
+    }
+
+    .hero-copy p,
+    .hero-copy h1 {
       max-width: 100%;
+      overflow-wrap: anywhere;
+    }
+
+    .hero-section::before {
+      background-size: 48px 48px;
+    }
+
+    .hero-visual {
+      min-height: auto;
+      padding-top: 2.2rem;
+    }
+
+    .hero-media__image {
+      object-fit: contain;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .hero-stat__value {
+      font-size: 1.7rem;
     }
   }
 </style>
+

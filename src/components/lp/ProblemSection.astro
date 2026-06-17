@@ -2,7 +2,7 @@
 const { problems } = Astro.props;
 ---
 
-<section id="problem" class="py-10 md:py-28 bg-[#F6F8F7]">
+<section id="problem" class="py-10 md:py-16 bg-[#F6F8F7]">
   <div class="max-w-[1160px] mx-auto px-4 md:px-8">
     <div class="text-center mb-6 md:mb-12">
       <p class="section-eyebrow mb-3">課題</p>
@@ -15,7 +15,7 @@ const { problems } = Astro.props;
       {problems.map((problem, index) => (
         <button
           type="button"
-          class="problem-mobile-card text-left bg-white border border-[#E5E7EB] rounded-3xl px-3.5 py-4 shadow-sm min-h-[138px]"
+        class="problem-mobile-card text-left bg-white border border-[#E5E7EB] rounded-lg px-3.5 py-4 shadow-sm min-h-[138px]"
           data-problem-index={index}
         >
           <img src={problem.iconSrc} alt="" class="w-9 h-9 mb-2.5 block" />
@@ -25,7 +25,7 @@ const { problems } = Astro.props;
     </div>
     <div class="hidden md:grid md:grid-cols-2 lg:grid-cols-4 gap-5">
       {problems.map((problem) => (
-        <div class="card p-4 md:p-7 rounded-2xl">
+        <div class="card p-4 md:p-7 rounded-lg">
           <img src={problem.iconSrc} alt="" class="w-10 h-10 md:w-12 md:h-12 mb-3 md:mb-4 block" />
           <h3 class="copy-pre-line font-semibold text-[#111827] mb-2 text-sm md:text-base leading-snug">{problem.title}</h3>
           <p class="copy-pre-line text-xs md:text-sm text-[#4B5563] leading-relaxed">{problem.body}</p>
@@ -40,7 +40,7 @@ const { problems } = Astro.props;
     aria-hidden="true"
   >
     <div class="flex min-h-full items-center justify-center">
-      <div class="w-full max-w-sm rounded-[28px] bg-white p-6 shadow-2xl">
+        <div class="w-full max-w-sm rounded-lg bg-white p-6 shadow-2xl">
         <div class="flex items-start justify-between gap-4">
           <div>
             <img id="problem-mobile-overlay-icon" alt="" class="w-10 h-10" />
@@ -49,7 +49,7 @@ const { problems } = Astro.props;
           <button
             type="button"
             id="problem-mobile-overlay-close"
-            class="shrink-0 rounded-full border border-[#E5E7EB] px-3 py-1 text-sm text-[#4B5563]"
+            class="shrink-0 rounded-lg border border-[#E5E7EB] px-3 py-1 text-sm text-[#4B5563]"
             aria-label="閉じる"
           >
             閉じる

@@ -28,32 +28,35 @@ export const nav = [
   { label: "料金", href: "#pricing" },
   { label: "FAQ", href: "#faq" },
   { label: "お問い合わせ", href: "#contact" },
+  { label: "3rducationについて", href: "#about" },
 ];
 
 export const hero = {
-  badge: "学校現場に寄り添うAI採点支援",
-  headline: "採点業務を\nもっと速く\nもっと正確に。",
+  badge: "学校現場に寄り添う採点DX",
+  headline: "採点から返却まで、\n完全自動で\nお任せください",
   subCopy:
-    "生成AIを活用し、採点・集計・返却業務を効率化。\n 先生が本来注力すべき教育活動に時間を使えるよう支援します。",
+    "AI自動採点「澄」は、生成AIを活用して採点業務を支援する\n学校向けツールです。\n先生が確認・修正できる運用を前提に、採点から返却までの時間を整えます。",
+  companyLead:
+    "3rducationは、教育現場の非効率をAIで減らし、教職員が生徒と向き合う時間を増やすことを目指す教育DXカンパニーです。",
   mediaSrc: "/images/hero-media/hero-dashboard.png",
   mediaAlt: "AI自動採点 澄 ダッシュボード画面",
   primaryCta: "資料請求する",
-  secondaryCta: "デモを相談する",
+  secondaryCta: "3rducationとは",
   impactCards: [
     {
-      value: "15分",
-      label: "１クラス採点完了",
-      note: "初期設定は7分で完了",
+      value: "約75%",
+      label: "採点時間の削減",
+      note: "社内検証による目安",
     },
     {
-      value: "75%減",
-      label: "総採点時間",
-      note: "当社検証",
+      value: "先生確認",
+      label: "最終判断を前提",
+      note: "確認・修正可能",
     },
     {
-      value: "完全自動採点",
-      label: "生成AI利用による完全自動採点を実現",
-      note: "",
+      value: "一貫支援",
+      label: "採点・集計・返却",
+      note: "学校ごとに運用相談",
     },
   ],
 };
@@ -64,6 +67,33 @@ export const trustBadges = [
   "採点・集計・返却を効率化",
   "先生による確認・修正も可能",
 ];
+
+export const company = {
+  eyebrow: "3rducationとは",
+  heading: "教育現場の時間を、\nもう一度教育のために。",
+  lead:
+    "合同会社3rducationは、教育現場のDX推進とAI採点ツール「澄」の開発・運営を行う会社です。現場経験を持つメンバーの視点から、先生の判断を尊重しながら、採点・集計・返却にかかる負担を軽くする仕組みをつくっています。",
+  missionTitle: "Mission",
+  mission: "教職員の採点・集計・返却業務を効率化し、生徒一人ひとりに向き合う時間を増やす。",
+  visionTitle: "Vision",
+  vision: "AIの力で、教育現場に有意義な時間を創出する。",
+  values: [
+    "教育現場への敬意",
+    "先生が最終判断できる運用",
+    "現場で使いやすいDX",
+  ],
+  profileTitle: "会社概要",
+  profile: [
+    { label: "商号", value: "合同会社3rducation" },
+    { label: "設立", value: "2026年6月（予定）" },
+    { label: "代表者", value: "代表執行役員 CEO 藤本 隆汰" },
+    { label: "所在地", value: "TODO（準備中）" },
+    {
+      label: "事業内容",
+      value: "教育現場のDX推進支援、教職員向けAI採点ツール「澄」の開発・運営",
+    },
+  ],
+};
 
 export const problems = [
   {
