@@ -85,9 +85,8 @@ export const company = {
   profileTitle: "会社概要",
   profile: [
     { label: "商号", value: "合同会社3rducation" },
-    { label: "設立", value: "2026年6月（予定）" },
+    { label: "設立", value: "2026年6月" },
     { label: "代表者", value: "代表執行役員 CEO 藤本 隆汰" },
-    { label: "所在地", value: "TODO（準備中）" },
     {
       label: "事業内容",
       value: "教育現場のDX推進支援、教職員向けAI採点ツール「澄」の開発・運営",
