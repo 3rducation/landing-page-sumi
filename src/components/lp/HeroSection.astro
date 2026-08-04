@@ -1,7 +1,5 @@
 ---
-const { hero, company } = Astro.props;
-
-const impactCards = hero.impactCards ?? [];
+const { hero } = Astro.props;
 
 ---
 
@@ -21,27 +19,10 @@ const impactCards = hero.impactCards ?? [];
           {hero.subCopy}
         </p>
 
-        <div class="hero-about">
-          <p class="hero-about__label">3rducationとは</p>
-          <p class="copy-pre-line hero-about__body">
-            {hero.companyLead}
-          </p>
-          <a href="#about" class="hero-about__link">会社概要を見る<span aria-hidden="true">→</span></a>
-        </div>
-
-        <div class="mt-4 flex flex-col gap-3 sm:flex-row">
+        <div class="mt-6 flex flex-col gap-3 sm:flex-row">
           <a href="#contact" class="btn-primary">{hero.primaryCta}</a>
         </div>
 
-        <div class="hero-stats mt-4 grid gap-3 sm:grid-cols-3 lg:max-w-[34rem]">
-          {impactCards.map((card) => (
-            <div class="hero-stat">
-              <p class="hero-stat__value">{card.value}</p>
-              <p class="copy-pre-line hero-stat__label">{card.label}</p>
-              <p class="copy-pre-line hero-stat__note">{card.note}</p>
-            </div>
-          ))}
-        </div>
       </div>
 
       <div class="hero-visual min-w-0">
@@ -277,36 +258,6 @@ const impactCards = hero.impactCards ?? [];
     color: #0f3d2e;
   }
 
-  .hero-stat {
-    border: 1px solid rgba(31, 107, 77, 0.15);
-    border-radius: 8px;
-    background: rgba(255, 255, 255, 0.78);
-    padding: 0.75rem 0.85rem;
-    backdrop-filter: blur(10px);
-  }
-
-  .hero-stat__value {
-    color: #1f6b4d;
-    font-size: 1.35rem;
-    font-weight: 800;
-    line-height: 1;
-  }
-
-  .hero-stat__label {
-    margin-top: 0.45rem;
-    color: #111827;
-    font-size: 0.78rem;
-    font-weight: 700;
-    line-height: 1.45;
-  }
-
-  .hero-stat__note {
-    margin-top: 0.25rem;
-    color: #6b7280;
-    font-size: 0.68rem;
-    line-height: 1.45;
-  }
-
   .hero-visual {
     position: relative;
     display: grid;
@@ -402,8 +353,7 @@ const impactCards = hero.impactCards ?? [];
 
     .hero-copy,
     .hero-visual,
-    .hero-visual__panel,
-    .hero-stats {
+    .hero-visual__panel {
       width: 100%;
       max-width: calc(100vw - 2rem);
       min-width: 0;
@@ -428,11 +378,4 @@ const impactCards = hero.impactCards ?? [];
       object-fit: contain;
     }
   }
-
-  @media (min-width: 768px) {
-    .hero-stat__value {
-      font-size: 1.7rem;
-    }
-  }
 </style>
-

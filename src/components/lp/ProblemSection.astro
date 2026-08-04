@@ -5,10 +5,10 @@ const { problems } = Astro.props;
 <section id="problem" class="py-10 md:py-16 bg-[#F6F8F7]">
   <div class="max-w-[1160px] mx-auto px-4 md:px-8">
     <div class="text-center mb-6 md:mb-12">
-      <p class="section-eyebrow mb-3">課題</p>
-      <h2 class="section-heading">採点業務の「ここが大変」</h2>
+      <p class="section-eyebrow mb-3">従来の採点ツールの課題</p>
+      <h2 class="section-heading">デジタル化しても、採点の負担は残っています</h2>
       <p class="text-[#4B5563] mt-3 max-w-xl mx-auto text-xs md:text-base leading-relaxed">
-        採点業務は、単に答案を採点するだけでは終わりません。問題ごとの確認、集計、返却、フィードバックまで、多くの時間と集中力が必要です。
+        従来の採点ツールは答案の整理や表示を効率化できる一方、判定や確認の多くは先生が担います。さらに、表記揺れ・長文記述・図の問題への対応にも課題が残ります。
       </p>
     </div>
     <div class="grid grid-cols-2 gap-3 md:hidden">
@@ -28,7 +28,7 @@ const { problems } = Astro.props;
         <div class="card p-4 md:p-7 rounded-lg">
           <img src={problem.iconSrc} alt="" class="w-10 h-10 md:w-12 md:h-12 mb-3 md:mb-4 block" />
           <h3 class="copy-pre-line font-semibold text-[#111827] mb-2 text-sm md:text-base leading-snug">{problem.title}</h3>
-          <p class="copy-pre-line text-xs md:text-sm text-[#4B5563] leading-relaxed">{problem.body}</p>
+          <p class="copy-pre-line text-xs md:text-sm text-[#4B5563] leading-relaxed"><span>{problem.body}</span>{problem.emphasis && <><strong class="font-bold text-[#111827]">{problem.emphasis}</strong><span>{problem.bodyAfter}</span></>}</p>
         </div>
       ))}
     </div>
@@ -55,7 +55,11 @@ const { problems } = Astro.props;
             閉じる
           </button>
         </div>
-        <p id="problem-mobile-overlay-body" class="mt-5 text-sm leading-7 text-[#4B5563]"></p>
+        <p class="mt-5 text-sm leading-7 text-[#4B5563]">
+          <span id="problem-mobile-overlay-body"></span>
+          <strong id="problem-mobile-overlay-emphasis" class="hidden font-bold text-[#111827]"></strong>
+          <span id="problem-mobile-overlay-body-after"></span>
+        </p>
       </div>
     </div>
   </div>
@@ -66,6 +70,8 @@ const { problems } = Astro.props;
   const overlayIcon = document.getElementById('problem-mobile-overlay-icon');
   const overlayTitle = document.getElementById('problem-mobile-overlay-title');
   const overlayBody = document.getElementById('problem-mobile-overlay-body');
+  const overlayEmphasis = document.getElementById('problem-mobile-overlay-emphasis');
+  const overlayBodyAfter = document.getElementById('problem-mobile-overlay-body-after');
   const closeBtn = document.getElementById('problem-mobile-overlay-close');
 
   const openOverlay = (index) => {
@@ -74,6 +80,13 @@ const { problems } = Astro.props;
     overlayIcon.setAttribute('src', item.iconSrc);
     overlayTitle.textContent = item.title;
     overlayBody.textContent = item.body;
+    if (overlayEmphasis) {
+      overlayEmphasis.textContent = item.emphasis || '';
+      overlayEmphasis.classList.toggle('hidden', !item.emphasis);
+    }
+    if (overlayBodyAfter) {
+      overlayBodyAfter.textContent = item.bodyAfter || '';
+    }
     overlay.classList.remove('hidden');
     overlay.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';

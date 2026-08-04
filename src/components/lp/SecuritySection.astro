@@ -8,15 +8,27 @@ const { security } = Astro.props;
       <p class="section-eyebrow copy-pre-line mb-3">{security.eyebrow}</p>
       <h2 class="section-heading copy-pre-line">{security.heading}</h2>
     </div>
-    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-6">
-      {security.items.map((item) => (
-        <div class="card">
-          <img src={item.iconSrc} alt="" class="w-10 h-10 mb-3 block" />
-          <h3 class="copy-pre-line font-semibold text-[#111827] text-sm mb-2">{item.title}</h3>
-          <p class="copy-pre-line text-xs text-[#4B5563] leading-relaxed">{item.body}</p>
-        </div>
-      ))}
-    </div>
-    <p class="copy-pre-line text-center text-xs text-[#9CA3AF] max-w-xl mx-auto">{security.note}</p>
+    <figure class="overflow-hidden rounded-xl border border-[#DDE8E2] bg-white shadow-[0_16px_40px_rgba(15,61,46,0.08)]">
+      <a
+        href={security.imageSrc}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="データの流れを拡大して表示"
+      >
+        <img
+          src={security.imageSrc}
+          alt={security.imageAlt}
+          width="1672"
+          height="941"
+          loading="lazy"
+          decoding="async"
+          class="block h-auto w-full"
+        />
+      </a>
+    </figure>
+    <p class="mt-3 text-center text-[10px] text-[#9CA3AF] md:text-xs">
+      画像をクリックすると拡大して確認できます。
+    </p>
+    <p class="copy-pre-line mt-5 text-center text-xs text-[#9CA3AF] max-w-xl mx-auto">{security.note}</p>
   </div>
 </section>

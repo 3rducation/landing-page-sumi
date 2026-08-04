@@ -2,40 +2,187 @@
 const { pricing } = Astro.props;
 ---
 
-<section id="pricing" class="py-20 md:py-16 bg-[#F6F8F7]">
-  <div class="max-w-[1160px] mx-auto px-5 md:px-8">
-    <div class="text-center mb-12">
-      <p class="section-eyebrow copy-pre-line mb-3">{pricing.eyebrow}</p>
+<section id="pricing" class="pricing-section bg-[#F6F8F7] py-14 md:py-20">
+  <div class="mx-auto max-w-[1160px] px-4 md:px-8">
+    <div class="mb-8 text-center md:mb-12">
+      <p class="section-eyebrow mb-3">{pricing.eyebrow}</p>
       <h2 class="section-heading copy-pre-line">{pricing.heading}</h2>
-      <p class="copy-pre-line text-[#4B5563] mt-4 text-sm md:text-base max-w-xl mx-auto">{pricing.subCopy}</p>
     </div>
-    <div class="grid md:grid-cols-3 gap-5 items-start">
-      {pricing.plans.map((plan) => (
-        <div class={`rounded-lg p-5 md:p-7 border flex flex-col ${plan.highlighted ? 'bg-[#1F6B4D] border-[#1F6B4D] text-white shadow-lg' : 'bg-white border-[#E5E7EB]'}`}>
-          <div class="mb-5">
-            <h3 class={`text-lg font-bold mb-2 ${plan.highlighted ? 'text-white' : 'text-[#111827]'}`}>{plan.name}</h3>
-            <p class={`text-sm ${plan.highlighted ? 'text-white/80' : 'text-[#4B5563]'}`}>{plan.target}</p>
+
+    <div class="grid gap-5 lg:grid-cols-[0.82fr_0.95fr_1.45fr] lg:items-stretch">
+      <article class="pricing-panel pricing-panel--flow">
+        <p class="pricing-panel__label">{pricing.premise.label}</p>
+        <div class="flex h-full flex-col px-5 pb-6 pt-7 md:px-6">
+          <p class="text-center text-lg font-bold text-[#0B2858] md:text-xl">
+            {pricing.premise.unit} ＝
+          </p>
+          <p class="mt-3 text-center text-2xl font-bold leading-snug text-[#0B2858] md:text-3xl">
+            {pricing.premise.definition}
+          </p>
+          <p class="mt-1 text-center text-sm font-semibold text-[#374151]">
+            {pricing.premise.context}
+          </p>
+
+          <div class="my-7 grid grid-cols-3 gap-2" aria-hidden="true">
+            <div class="pricing-symbol">
+              <span>科</span>
+              <small>1科目</small>
+            </div>
+            <div class="pricing-symbol">
+              <span>組</span>
+              <small>1クラス</small>
+            </div>
+            <div class="pricing-symbol">
+              <span>40</span>
+              <small>40人</small>
+            </div>
           </div>
-          <ul class="space-y-2 mb-7 flex-1">
-            {plan.features.map((feature) => (
-              <li class={`flex items-center gap-2 text-sm ${plan.highlighted ? 'text-white' : 'text-[#4B5563]'}`}>
-                <span class={plan.highlighted ? 'text-[#A88B3D]' : 'text-[#1F6B4D]'}>✓</span>
-                {feature}
-              </li>
-            ))}
-          </ul>
-          <div class={`text-center text-sm font-medium mb-4 ${plan.highlighted ? 'text-white/70' : 'text-[#9CA3AF]'}`}>
-            料金：個別見積もり
-          </div>
-          <a
-            href="#contact"
-            class={`text-center text-sm font-semibold py-3 px-5 rounded-lg transition-colors ${plan.highlighted ? 'bg-white text-[#1F6B4D] hover:bg-[#EAF6F0]' : 'bg-[#1F6B4D] text-white hover:bg-[#0F3D2E]'}`}
-          >
-            {plan.cta}
-          </a>
+
+          <p class="mt-auto border-t border-dashed border-[#A8B4C5] pt-5 text-center text-sm font-bold text-[#0B2858] md:text-base">
+            {pricing.premise.note}
+          </p>
         </div>
-      ))}
+      </article>
+
+      <article class="pricing-panel pricing-panel--flow">
+        <p class="pricing-panel__label">{pricing.example.label}</p>
+        <div class="flex h-full flex-col px-5 pb-6 pt-7 md:px-6">
+          <p class="rounded-lg bg-[#EAF3DE] py-2 text-center text-xl font-bold text-[#1F6B2A]">
+            {pricing.example.subject}
+          </p>
+
+          <dl class="mt-4 divide-y divide-dashed divide-[#CBD5E1]">
+            {pricing.example.items.map((item) => (
+              <div class="flex items-center justify-between gap-4 py-2.5">
+                <dt class="text-sm font-semibold text-[#374151]">{item.label}</dt>
+                <dd class="shrink-0 text-lg font-bold text-[#111827]">
+                  {item.value}<span class="ml-1 text-xs font-semibold">{item.unit}</span>
+                </dd>
+              </div>
+            ))}
+          </dl>
+
+          <div class="mt-auto border-t-2 border-[#23823F] pt-4">
+            <p class="text-center text-sm font-semibold text-[#111827]">{pricing.example.formula}</p>
+            <p class="mt-3 flex items-center justify-center gap-2 text-[#111827]">
+              <span class="text-lg font-bold">＝</span>
+              <strong class="rounded-lg bg-[#23823F] px-4 py-2 text-3xl leading-none text-white">
+                {pricing.example.result}<span class="ml-1 text-lg">{pricing.example.resultUnit}</span>
+              </strong>
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <article class="pricing-panel">
+        <p class="pricing-panel__label">{pricing.fees.label}</p>
+        <div class="grid h-full gap-4 px-5 pb-6 pt-7 sm:grid-cols-2 lg:px-6">
+          <div class="overflow-hidden rounded-xl border-2 border-[#23823F] bg-white">
+            <p class="bg-[#23823F] px-4 py-3 text-center text-lg font-bold text-white">
+              {pricing.fees.initial.title}
+            </p>
+            <div class="px-4 py-5 text-center">
+              <p class="text-xl font-bold text-[#23823F]">{pricing.fees.initial.period}</p>
+              <p class="mt-1 text-5xl font-bold leading-none tracking-tight text-[#23823F] md:text-6xl">
+                {pricing.fees.initial.amount}<span class="ml-1 text-2xl">万円</span>
+              </p>
+              <p class="mt-2 text-sm font-semibold text-[#23823F]">（税抜）</p>
+              <p class="mt-5 border-t border-[#9CC7A5] pt-4 text-sm font-bold leading-relaxed text-[#111827]">
+                約<span class="mx-1 text-2xl text-[#23823F]">{pricing.fees.initial.capacity}</span>セットまで<br />
+                利用可能
+              </p>
+            </div>
+          </div>
+
+          <div class="overflow-hidden rounded-xl border-2 border-[#6CA36E] bg-white">
+            <p class="bg-[#F3F8EF] px-4 py-3 text-center text-lg font-bold text-[#237B36]">
+              {pricing.fees.additional.title}
+            </p>
+            <div class="px-4 py-5 text-center">
+              <p class="text-base font-bold text-[#111827]">
+                約<span class="mx-1 text-3xl text-[#23823F]">{pricing.fees.additional.capacity}</span>セット
+              </p>
+              <p class="mt-3 text-5xl font-bold leading-none text-[#23823F]">
+                {pricing.fees.additional.amount}<span class="ml-1 text-2xl">万円</span>
+              </p>
+              <p class="mt-2 text-sm font-semibold text-[#23823F]">（税抜）</p>
+              <p class="mt-5 border-t border-[#B8D5BB] pt-4 text-xs font-semibold leading-relaxed text-[#374151]">
+                {pricing.fees.additional.note}
+              </p>
+            </div>
+          </div>
+        </div>
+      </article>
     </div>
-    <p class="copy-pre-line text-center text-xs text-[#9CA3AF] mt-6">{pricing.note}</p>
   </div>
 </section>
+
+<style>
+  .pricing-panel {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    border: 1px solid #b7c4d3;
+    border-radius: 14px;
+    background: #ffffff;
+    box-shadow: 0 12px 30px rgba(11, 40, 88, 0.07);
+  }
+
+  .pricing-panel__label {
+    width: max-content;
+    min-width: 9rem;
+    margin: -1rem auto 0;
+    border-radius: 10px;
+    background: #0b2858;
+    padding: 0.5rem 1.25rem;
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+  }
+
+  .pricing-symbol {
+    display: grid;
+    place-items: center;
+    gap: 0.25rem;
+    min-width: 0;
+    border-radius: 10px;
+    background: #f3f8ef;
+    padding: 0.75rem 0.25rem;
+    color: #1f6b4d;
+  }
+
+  .pricing-symbol span {
+    display: grid;
+    place-items: center;
+    width: 2.35rem;
+    height: 2.35rem;
+    border: 1px solid #8fc39e;
+    border-radius: 999px;
+    background: #ffffff;
+    font-weight: 800;
+    line-height: 1;
+  }
+
+  .pricing-symbol small {
+    font-size: 0.66rem;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  @media (min-width: 1024px) {
+    .pricing-panel--flow::after {
+      content: "→";
+      position: absolute;
+      top: 48%;
+      right: -1.45rem;
+      z-index: 10;
+      color: #0b2858;
+      font-size: 1.5rem;
+      font-weight: 800;
+      line-height: 1;
+    }
+  }
+</style>

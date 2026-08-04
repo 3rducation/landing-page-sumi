@@ -41,6 +41,23 @@ body {
   overflow-x: clip;
 }
 
+.js .scroll-reveal {
+  opacity: 0;
+  filter: blur(3px);
+  transform: translate3d(0, 2.75rem, 0) scale(0.985);
+  transition:
+    opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, filter, transform;
+}
+
+.js .scroll-reveal.is-visible {
+  opacity: 1;
+  filter: blur(0);
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
 .section-eyebrow {
   font-size: 0.76rem;
   font-weight: 700;
@@ -157,5 +174,15 @@ canvas {
     min-height: 3rem;
     padding-inline: 1rem;
     text-align: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js .scroll-reveal,
+  .js .scroll-reveal.is-visible {
+    opacity: 1;
+    filter: none;
+    transform: none;
+    transition: none;
   }
 }
