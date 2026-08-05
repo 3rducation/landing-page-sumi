@@ -223,7 +223,7 @@ export const pricing = {
     },
     additional: {
       title: "追加購入",
-      amount: "20",
+      amount: "15",
       capacity: "400",
       note: "使い切りそうになった場合に随時買い足し",
     },
