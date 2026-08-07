@@ -18,7 +18,7 @@ const { nav } = Astro.props;
 
     <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-[#4B5563]">
       {nav.map((item) => (
-        <a href={item.href} class="hover:text-[#1F6B4D] transition-colors">{item.label}</a>
+        <a href={item.href} class="site-header__nav-link">{item.label}</a>
       ))}
     </nav>
 
@@ -126,6 +126,36 @@ const { nav } = Astro.props;
 
   .site-header__cta--desktop {
     display: inline-flex;
+  }
+
+  .site-header__nav-link {
+    position: relative;
+    padding: 0.55rem 0;
+    transition: color 0.2s ease;
+  }
+
+  .site-header__nav-link::after {
+    position: absolute;
+    right: 0;
+    bottom: 0.2rem;
+    left: 0;
+    height: 2px;
+    border-radius: 999px;
+    background: #1f6b4d;
+    content: "";
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.2s ease;
+  }
+
+  .site-header__nav-link:hover,
+  .site-header__nav-link:focus-visible {
+    color: #1f6b4d;
+  }
+
+  .site-header__nav-link:hover::after,
+  .site-header__nav-link:focus-visible::after {
+    transform: scaleX(1);
   }
 
   .site-header[data-scrolled="true"] .site-header__inner {

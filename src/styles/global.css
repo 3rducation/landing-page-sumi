@@ -82,6 +82,10 @@ body {
   white-space: pre-line;
 }
 
+section[id] {
+  scroll-margin-top: 6rem;
+}
+
 img,
 svg,
 video,

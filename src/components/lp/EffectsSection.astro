@@ -1,34 +1,464 @@
 ---
 const { effectComparison } = Astro.props;
+
+const widthPercentage = (minutes: number) =>
+  `${(minutes / effectComparison.maxMinutes) * 100}%`;
 ---
 
-<section class="py-10 md:py-16 bg-[#FAFAF7]">
+<section id="effects" class="py-10 md:py-16 bg-[#FAFAF7]">
   <div class="max-w-[1160px] mx-auto px-4 md:px-8">
-    <div class="text-center mb-6 md:mb-12">
-      <p class="section-eyebrow mb-3">期待できる効果</p>
-      <h2 class="section-heading">高精度な一次判定で、採点時間を減らす</h2>
+    <div class="text-center mb-4 md:mb-6">
+      <p class="section-eyebrow">期待できる効果</p>
     </div>
 
     <div class="mb-8 md:mb-12">
       <div class="mb-5 text-center">
-        <p class="text-xl md:text-3xl font-bold text-[#0F3D2E] leading-tight">
+        <h2 class="section-heading text-[#0F3D2E]">
           {effectComparison.heading}
-        </p>
+        </h2>
         <p class="mt-2 text-sm md:text-base text-[#4B5563] leading-relaxed max-w-3xl mx-auto">
           {effectComparison.body}
         </p>
       </div>
-      <figure class="overflow-hidden rounded-xl border border-[#DDE8E2] bg-white shadow-[0_16px_40px_rgba(15,61,46,0.08)]">
-        <img
-          src={effectComparison.imageSrc}
-          alt={effectComparison.imageAlt}
-          width="1672"
-          height="941"
-          loading="lazy"
-          decoding="async"
-          class="block w-full h-auto"
-        />
-      </figure>
+      <div
+        class="comparison-card"
+        role="img"
+        aria-label="採点業務の所要時間比較。手採点は合計70分、従来の採点ツールは合計41分、澄は合計16分。澄は手採点と比べて54分、約77パーセント削減します。"
+      >
+        <div class="chart-panel">
+          <h3 class="chart-title">採点業務の所要時間比較</h3>
+
+          <div class="chart-rows">
+            {
+              effectComparison.rows.map((row) => (
+                <div class={`chart-row chart-row--${row.variant}`}>
+                  <div class="row-heading">
+                    <div>
+                      <p class="row-label">{row.label}</p>
+                      <p class="row-details">{row.details}</p>
+                    </div>
+                    <p class="row-total">
+                      合計 <strong>{row.total}分</strong>
+                    </p>
+                  </div>
+
+                  <div
+                    class:list={[
+                      "bar-visual",
+                      {
+                        "bar-visual--annotated": row.segments.some(
+                          (segment) => segment.type === "overhead",
+                        ),
+                      },
+                    ]}
+                  >
+                    {
+                      row.segments
+                        .filter((segment) => segment.type === "overhead")
+                        .map((segment) => (
+                          <span
+                            class="bar-callout"
+                            style={`left: ${widthPercentage(row.total)}`}
+                          >
+                            {segment.name} <strong>{segment.minutes}分</strong>
+                          </span>
+                        ))
+                    }
+                    <div class="bar-track">
+                      <div class="bar-segments">
+                        {row.segments.map((segment) => (
+                          <div
+                            class={`bar-segment bar-segment--${segment.type}`}
+                            style={`width: ${widthPercentage(segment.minutes)}`}
+                            title={`${segment.name} ${segment.minutes}分`}
+                          >
+                            {segment.type !== "overhead" && (
+                              <span class="segment-label">
+                                <span>{segment.name}</span>
+                                <strong>{segment.minutes}分</strong>
+                              </span>
+                            )}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+
+          <div class="chart-scale" aria-hidden="true">
+            {
+              effectComparison.ticks.map((tick) => (
+                <span>{tick}</span>
+              ))
+            }
+          </div>
+          <p class="scale-label">時間（分）</p>
+          <p class="chart-note">{effectComparison.note}</p>
+        </div>
+
+        <div class="reduction-panel">
+          <div class="reduction-circle">
+            <strong>{effectComparison.reductionValue}</strong>
+            <span>{effectComparison.reductionLabel}</span>
+          </div>
+          <p>{effectComparison.reductionRate}</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
+
+<style>
+  .comparison-card {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 13rem;
+    overflow: hidden;
+    border: 1px solid #d7e4de;
+    border-radius: 1.25rem;
+    background: #ffffff;
+    box-shadow: 0 16px 40px rgba(15, 61, 46, 0.08);
+  }
+
+  .chart-panel {
+    min-width: 0;
+    padding: 2rem 2rem 1.25rem;
+  }
+
+  .chart-title {
+    margin: 0 0 1.75rem;
+    color: #0b2859;
+    font-size: clamp(1.25rem, 2.4vw, 2rem);
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-align: center;
+  }
+
+  .chart-rows {
+    display: grid;
+    gap: 1.45rem;
+  }
+
+  .row-heading {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .row-label {
+    color: #10254a;
+    font-size: 1rem;
+    font-weight: 800;
+  }
+
+  .row-details {
+    margin-top: 0.1rem;
+    color: #697386;
+    font-size: 0.75rem;
+  }
+
+  .row-total {
+    flex: none;
+    color: #41506a;
+    font-size: 0.75rem;
+    white-space: nowrap;
+  }
+
+  .row-total strong {
+    margin-left: 0.2rem;
+    color: #10254a;
+    font-size: 1.1rem;
+  }
+
+  .chart-row--sumi .row-label,
+  .chart-row--sumi .row-total,
+  .chart-row--sumi .row-total strong {
+    color: #078842;
+  }
+
+  .bar-visual {
+    position: relative;
+  }
+
+  .bar-visual--annotated {
+    padding-top: 1.65rem;
+  }
+
+  .bar-track {
+    position: relative;
+    height: 4.25rem;
+    border-left: 1px solid #9aa8bb;
+    background-image: linear-gradient(
+      to right,
+      transparent calc(100% - 1px),
+      #dce3ea calc(100% - 1px)
+    );
+    background-size: calc(100% / 7) 100%;
+  }
+
+  .bar-segments {
+    display: flex;
+    height: 100%;
+  }
+
+  .bar-segment {
+    display: flex;
+    min-width: 0;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-size: clamp(0.72rem, 1.3vw, 1rem);
+    font-weight: 800;
+    white-space: nowrap;
+  }
+
+  .segment-label {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 0.28em;
+    line-height: 1.1;
+  }
+
+  .segment-label strong {
+    font-size: 1.08em;
+  }
+
+  .bar-segment--grading {
+    background: linear-gradient(135deg, #0b2859, #123f78);
+  }
+
+  .chart-row--sumi .bar-segment--grading {
+    background: linear-gradient(135deg, #078842, #18ad5b);
+  }
+
+  .bar-segment--aggregate {
+    background: #858b96;
+    font-size: 0.67rem;
+  }
+
+  .bar-segment--return {
+    background: #b0b4bc;
+    color: #15213a;
+    font-size: 0.67rem;
+  }
+
+  .bar-segment--overhead {
+    min-width: 6px;
+    background: #b3a364;
+  }
+
+  .bar-segment--aggregate .segment-label,
+  .bar-segment--return .segment-label {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.12rem;
+  }
+
+  .bar-callout {
+    position: absolute;
+    top: 0;
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.2rem;
+    margin-left: 0.75rem;
+    color: #334155;
+    font-size: 0.72rem;
+    font-weight: 700;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  .bar-callout::before {
+    position: absolute;
+    top: 0.55rem;
+    left: -0.75rem;
+    width: 0.65rem;
+    border-top: 1.5px solid #8a793e;
+    content: "";
+  }
+
+  .bar-callout::after {
+    position: absolute;
+    top: 0.55rem;
+    left: -0.75rem;
+    height: 1.1rem;
+    border-left: 1.5px solid #8a793e;
+    content: "";
+  }
+
+  .bar-callout strong {
+    color: #10254a;
+    font-size: 0.82rem;
+  }
+
+  .chart-scale {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.55rem;
+    color: #566279;
+    font-size: 0.7rem;
+    font-weight: 700;
+  }
+
+  .scale-label {
+    margin-top: 0.2rem;
+    color: #10254a;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-align: center;
+  }
+
+  .chart-note {
+    margin-top: 1rem;
+    color: #697386;
+    font-size: 0.72rem;
+  }
+
+  .reduction-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1.25rem;
+    border-left: 1px solid #d7e4de;
+    background:
+      radial-gradient(circle at 50% 34%, rgba(20, 174, 91, 0.14), transparent 42%),
+      #f5faf7;
+  }
+
+  .reduction-circle {
+    display: flex;
+    width: 10rem;
+    aspect-ratio: 1;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    background: linear-gradient(145deg, #04a54a, #087b3c);
+    color: #ffffff;
+    box-shadow: 0 14px 30px rgba(7, 136, 66, 0.2);
+  }
+
+  .reduction-circle strong {
+    font-size: 2.7rem;
+    line-height: 1;
+  }
+
+  .reduction-circle span {
+    margin-top: 0.45rem;
+    font-size: 1.4rem;
+    font-weight: 800;
+  }
+
+  .reduction-panel > p {
+    margin-top: 1.25rem;
+    color: #078842;
+    font-size: 1rem;
+    font-weight: 800;
+    text-align: center;
+  }
+
+  @media (max-width: 767px) {
+    .comparison-card {
+      grid-template-columns: 1fr;
+    }
+
+    .chart-panel {
+      padding: 1.5rem 1rem 1rem;
+    }
+
+    .chart-title {
+      margin-bottom: 1.5rem;
+    }
+
+    .chart-rows {
+      gap: 1.2rem;
+    }
+
+    .row-heading {
+      align-items: start;
+    }
+
+    .row-label {
+      font-size: 0.9rem;
+    }
+
+    .row-details {
+      font-size: 0.65rem;
+    }
+
+    .row-total strong {
+      display: block;
+      margin: 0;
+      font-size: 1rem;
+      text-align: right;
+    }
+
+    .bar-track {
+      height: 3.35rem;
+    }
+
+    .bar-segment {
+      font-size: 0.65rem;
+    }
+
+    .bar-segment--aggregate,
+    .bar-segment--return {
+      font-size: 0.54rem;
+    }
+
+    .bar-callout {
+      margin-left: 0.6rem;
+      font-size: 0.61rem;
+    }
+
+    .bar-callout::before {
+      left: -0.6rem;
+      width: 0.5rem;
+    }
+
+    .bar-callout::after {
+      left: -0.6rem;
+    }
+
+    .bar-callout strong {
+      font-size: 0.68rem;
+    }
+
+    .chart-note {
+      margin-top: 0.75rem;
+    }
+
+    .reduction-panel {
+      flex-direction: row;
+      gap: 1.25rem;
+      padding: 1.25rem;
+      border-top: 1px solid #d7e4de;
+      border-left: 0;
+    }
+
+    .reduction-circle {
+      width: 7.25rem;
+      flex: none;
+    }
+
+    .reduction-circle strong {
+      font-size: 2rem;
+    }
+
+    .reduction-circle span {
+      font-size: 1.05rem;
+    }
+
+    .reduction-panel > p {
+      margin-top: 0;
+      font-size: 0.9rem;
+      text-align: left;
+    }
+  }
+</style>

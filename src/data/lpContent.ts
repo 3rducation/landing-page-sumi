@@ -22,11 +22,11 @@ export const meta = {
 };
 
 export const nav = [
-  { label: "課題", href: "#problem" },
-  { label: "特徴", href: "#features" },
+  { label: "導入効果", href: "#effects" },
+  { label: "できること", href: "#features" },
+  { label: "セキュリティ", href: "#security" },
   { label: "料金", href: "#pricing" },
-  { label: "お問い合わせ", href: "#contact" },
-  { label: "3rducationについて", href: "#about" },
+  { label: "会社情報", href: "#about" },
 ];
 
 export const hero = {
@@ -173,12 +173,48 @@ export const accuracyProof = {
 };
 
 export const effectComparison = {
-  imageSrc: "/images/grading-time-comparison.png",
-  imageAlt:
-    "1クラスあたりの採点業務時間を比較した図。手採点は採点60分、集計5分、返却5分で合計70分。従来の採点ツールは採点40分、集計・返却1分で合計41分。澄は採点15分、集計・返却1分で合計16分となり、手採点から54分、約77%削減。",
   heading: "1クラスあたり70分から16分へ",
   body:
     "手採点と比べ、採点・集計・返却を含む業務全体で54分、約77%の削減を想定しています。",
+  maxMinutes: 70,
+  ticks: [0, 10, 20, 30, 40, 50, 60, 70],
+  rows: [
+    {
+      label: "手採点",
+      variant: "manual",
+      total: 70,
+      details: "採点60分・集計5分・返却5分",
+      segments: [
+        { name: "採点", minutes: 60, type: "grading" },
+        { name: "集計", minutes: 5, type: "aggregate" },
+        { name: "返却", minutes: 5, type: "return" },
+      ],
+    },
+    {
+      label: "従来の採点ツール",
+      variant: "legacy",
+      total: 41,
+      details: "採点40分・集計／返却1分",
+      segments: [
+        { name: "採点", minutes: 40, type: "grading" },
+        { name: "集計・返却", minutes: 1, type: "overhead" },
+      ],
+    },
+    {
+      label: "澄",
+      variant: "sumi",
+      total: 16,
+      details: "採点15分・集計／返却1分",
+      segments: [
+        { name: "採点", minutes: 15, type: "grading" },
+        { name: "集計・返却", minutes: 1, type: "overhead" },
+      ],
+    },
+  ],
+  reductionValue: "54分",
+  reductionLabel: "削減",
+  reductionRate: "手採点比 約77%削減",
+  note: "※ 1クラスあたりの想定時間です。",
 };
 
 export const security = {
