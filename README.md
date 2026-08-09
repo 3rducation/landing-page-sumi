@@ -6,6 +6,8 @@
 
 - `src/pages/index.astro`
   LP のページ本体です。今は「どのセクションを並べるか」だけを書いてあります。
+- `src/pages/privacy.astro` / `src/pages/terms.md`
+  フッターから別タブで開く、プライバシーポリシーと利用規約のページです。
 - `src/components/lp/`
   ヘッダー、ヒーロー、料金表、FAQ など、見た目の各ブロックです。
 - `src/data/lpContent.ts`

@@ -10,8 +10,18 @@ const { footer } = Astro.props;
         <span class="text-white/80 text-sm">{footer.company}</span>
       </div>
       <div class="flex gap-5 text-xs text-white/50">
-        <a href="#" class="hover:text-white/80 transition-colors">プライバシーポリシー（準備中）</a>
-        <a href="#" class="hover:text-white/80 transition-colors">利用規約（準備中）</a>
+        <a
+          href="/privacy/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="hover:text-white/80 transition-colors"
+        >プライバシーポリシー</a>
+        <a
+          href="/terms/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="hover:text-white/80 transition-colors"
+        >利用規約</a>
       </div>
     </div>
     <div class="mt-6 border-t border-white/10 pt-5 text-center text-xs text-white/40">

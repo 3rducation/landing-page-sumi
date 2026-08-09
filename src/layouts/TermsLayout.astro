@@ -1,0 +1,132 @@
+---
+import '../styles/global.css';
+import BaseLayout from './BaseLayout.astro';
+import { meta } from '../data/lpContent';
+
+const { frontmatter } = Astro.props;
+---
+
+<BaseLayout
+  title={`${frontmatter.title} | 合同会社3rducation`}
+  description={frontmatter.description}
+  siteUrl={meta.siteUrl}
+  image={meta.image}
+  keywords={["利用規約", "3rducation", "AI自動採点 澄"]}
+>
+  <header class="border-b border-[#DDE7E1] bg-white/95 backdrop-blur">
+    <div class="mx-auto flex max-w-[980px] items-center justify-between gap-5 px-5 py-4 md:px-8">
+      <a href="/" aria-label="AI自動採点「澄」のトップページへ戻る">
+        <img src="/images/logo-transparent.png" alt="3rducation" class="h-9 w-auto" />
+      </a>
+      <a
+        href="/"
+        class="text-sm font-semibold text-[#1F6B4D] transition-colors hover:text-[#0F3D2E] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#1F6B4D]"
+      >サービスサイトへ戻る</a>
+    </div>
+  </header>
+
+  <main class="bg-[#F4F7F2]/95 py-12 md:py-20">
+    <article class="mx-auto max-w-[980px] px-5 md:px-8">
+      <div class="legal-copy rounded-2xl border border-[#DDE7E1] bg-white px-6 py-9 shadow-[0_18px_50px_rgba(15,61,46,0.08)] md:px-12 md:py-14">
+        <p class="legal-eyebrow">TERMS OF SERVICE</p>
+        <h1>{frontmatter.title}</h1>
+        <slot />
+      </div>
+    </article>
+  </main>
+
+  <footer class="bg-[#0F3D2E] py-7 text-center text-xs text-white/50">
+    © {new Date().getFullYear()} 合同会社3rducation. All rights reserved.
+  </footer>
+</BaseLayout>
+
+<style is:global>
+  .legal-copy .legal-eyebrow {
+    margin: 0;
+    color: #1f6b4d;
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+  }
+
+  .legal-copy h1 {
+    margin-top: 0.4rem;
+    color: #111827;
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.5;
+  }
+
+  .legal-copy h2 {
+    margin-top: 3rem;
+    border-left: 4px solid #a88b3d;
+    padding-left: 1rem;
+    color: #0f3d2e;
+    font-size: 1.125rem;
+    font-weight: 700;
+    line-height: 1.7;
+  }
+
+  .legal-copy p,
+  .legal-copy li {
+    color: #374151;
+    font-size: 0.875rem;
+    line-height: 2;
+  }
+
+  .legal-copy h1 + p {
+    margin-top: 2rem;
+  }
+
+  .legal-copy p + p {
+    margin-top: 1rem;
+  }
+
+  .legal-copy h2 + p,
+  .legal-copy h2 + ol {
+    margin-top: 1.25rem;
+  }
+
+  .legal-copy ol {
+    list-style: decimal;
+    padding-left: 1.6rem;
+  }
+
+  .legal-copy ol ol {
+    margin-top: 0.5rem;
+    list-style: decimal;
+  }
+
+  .legal-copy li + li {
+    margin-top: 0.5rem;
+  }
+
+  .legal-copy > p:last-child {
+    margin-top: 1rem;
+    text-align: right;
+    font-weight: 600;
+  }
+
+  .legal-copy > p:nth-last-child(2) {
+    margin-top: 3.5rem;
+    border-top: 1px solid #e5e7eb;
+    padding-top: 1.5rem;
+    text-align: right;
+    font-weight: 600;
+  }
+
+  @media (min-width: 768px) {
+    .legal-copy h1 {
+      font-size: 2.25rem;
+    }
+
+    .legal-copy h2 {
+      font-size: 1.25rem;
+    }
+
+    .legal-copy p,
+    .legal-copy li {
+      font-size: 1rem;
+    }
+  }
+</style>

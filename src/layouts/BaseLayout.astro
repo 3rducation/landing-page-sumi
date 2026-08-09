@@ -5,6 +5,7 @@ const {
   siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? 'https://www.3rducation.com',
   image = '/images/hero-media/hero-dashboard.png',
   keywords = [],
+  robots = 'index, follow',
 } = Astro.props;
 
 const canonicalUrl = new URL(Astro.url.pathname, siteUrl).toString();
@@ -37,7 +38,7 @@ const websiteSchema = {
   <title>{title}</title>
   <meta name="description" content={description} />
   <meta name="keywords" content={keywords.join(', ')} />
-  <meta name="robots" content="index, follow" />
+  <meta name="robots" content={robots} />
   <meta name="theme-color" content="#ffffff" />
   <link rel="canonical" href={canonicalUrl} />
   <link rel="icon" type="image/png" sizes="512x512" href="/favicon.png?v=2" />
