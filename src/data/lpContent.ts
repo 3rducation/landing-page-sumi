@@ -259,11 +259,12 @@ export const pricing = {
     },
     additional: {
       title: "追加購入",
-      amount: "15",
+      period: "追加",
+      amount: "20",
       capacity: "400",
-      note: "使い切りそうになった場合に随時買い足し",
     },
   },
+  priceNote: "*価格は為替等の影響で変更されることがあります。",
 };
 
 export const contact = {
