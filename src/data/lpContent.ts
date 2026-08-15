@@ -175,7 +175,7 @@ export const accuracyProof = {
 export const effectComparison = {
   heading: "1クラスあたり70分から16分へ",
   body:
-    "手採点と比べ、採点・集計・返却を含む業務全体で54分、約77%の削減を想定しています。",
+    "手採点と比べ、採点・集計・返却を含む業務全体で54分、約77%の削減を実現可能です。",
   maxMinutes: 70,
   ticks: [0, 10, 20, 30, 40, 50, 60, 70],
   rows: [
