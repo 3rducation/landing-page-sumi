@@ -77,8 +77,15 @@ const { company } = Astro.props;
           {company.representativeName}
         </h3>
         <div class="representative-modal__bio">
-          {company.representativeBio.map((paragraph) => (
-            <p>{paragraph}</p>
+          {company.representativeBio.map((paragraph, index) => (
+            <p>
+              {paragraph}
+              {index === company.representativeBio.length - 1 && (
+                <span class="representative-modal__bio-closing">
+                  {company.representativeBioClosing}
+                </span>
+              )}
+            </p>
           ))}
         </div>
       </div>
@@ -229,6 +236,14 @@ const { company } = Astro.props;
     line-height: 1.9;
   }
 
+  .representative-modal__bio p {
+    text-wrap: pretty;
+  }
+
+  .representative-modal__bio-closing {
+    white-space: nowrap;
+  }
+
   .company-story {
     display: grid;
     gap: 1rem;
@@ -299,6 +314,12 @@ const { company } = Astro.props;
 
     .representative-modal__name {
       font-size: 1.4rem;
+    }
+
+    .representative-modal__bio {
+      gap: 0.75rem;
+      font-size: 0.85rem;
+      line-height: 1.85;
     }
 
     .company-profile__row {
