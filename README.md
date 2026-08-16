@@ -125,5 +125,10 @@ npm run preview
 
 ## お問い合わせフォームについて
 
-`src/components/lp/ContactSection.astro` は UI のみの実装です。実送信が必要な場合は
-Netlify Forms 等の設定を追加してください（バックエンドは未実装）。
+お問い合わせフォームは Formspree を利用し、`contact@3rducation.com` に通知します。
+
+- Formspree の送信先URL: `src/config/contact.ts` の `FORMSPREE_ENDPOINT`
+- 問い合わせ先メールアドレス: `src/config/contact.ts` の `CONTACT_EMAIL`
+- フォームの表示・項目・送信完了メッセージ: `src/components/lp/ContactSection.astro`
+
+Formspree 側でフォームを作り直した場合は、`FORMSPREE_ENDPOINT` のURLのみ差し替えてください。
