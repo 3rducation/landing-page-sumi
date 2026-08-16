@@ -1,6 +1,5 @@
 ---
 import {
-  CONTACT_EMAIL,
   CONTACT_SUBJECT_PREFIX,
   FORMSPREE_ENDPOINT,
 } from '../../config/contact';
@@ -192,18 +191,6 @@ const { contact } = Astro.props;
       </button>
 
       <p id="contact-form-status" class="hidden text-center text-sm font-medium"></p>
-
-      <p class="text-center text-xs leading-relaxed text-[#6B7280]">
-        送信内容は Formspree 経由で受け付けます。<br />
-        フォームを利用できない場合は、
-        <a
-          href={`mailto:${CONTACT_EMAIL}`}
-          class="font-medium text-[#1F6B4D] underline decoration-[#A7CDBA] underline-offset-2 hover:text-[#0F3D2E]"
-        >
-          {CONTACT_EMAIL}
-        </a>
-        までご連絡ください。
-      </p>
     </form>
   </div>
 </section>
