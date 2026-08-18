@@ -253,10 +253,10 @@ export const pricing = {
       { label: "小テスト", value: "20", unit: "回" },
       { label: "中間", value: "2", unit: "回" },
       { label: "期末", value: "3", unit: "回" },
-      { label: "クラス数", value: "12", unit: "クラス" },
+      { label: "クラス数", value: "10", unit: "クラス" },
     ],
-    formula: "（20 × 0.5 ＋ 2 ＋ 3）× 12",
-    result: "180",
+    formula: "（20 × 0.5 ＋ 2 ＋ 3）× 10",
+    result: "150",
     resultUnit: "セット",
   },
   fees: {
