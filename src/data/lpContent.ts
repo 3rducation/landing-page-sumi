@@ -231,6 +231,14 @@ export const security = {
 export const pricing = {
   eyebrow: "料金",
   heading: "利用状況に合わせて、無駄なく使えるセット制",
+  announcement: {
+    label: "料金に関するお知らせ",
+    heading: "大幅なコストカットに向け、料金形態の大幅変更を予定しております。",
+    body:
+      "現在、よりご利用いただきやすい料金形態を検証しております。正式な発表までもうしばらくお待ちください。詳しく知りたい方は、ぜひお問い合わせいただけますと幸いです。",
+    ctaLabel: "料金について問い合わせる",
+    ctaHref: "#contact",
+  },
   premise: {
     label: "前提",
     unit: "1セット",

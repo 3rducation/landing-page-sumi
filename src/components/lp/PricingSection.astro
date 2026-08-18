@@ -9,6 +9,21 @@ const { pricing } = Astro.props;
       <h2 class="section-heading copy-pre-line">{pricing.heading}</h2>
     </div>
 
+    <aside class="pricing-announcement" aria-labelledby="pricing-announcement-heading">
+      <div class="pricing-announcement__icon" aria-hidden="true">!</div>
+      <div class="min-w-0">
+        <p class="pricing-announcement__label">{pricing.announcement.label}</p>
+        <h3 id="pricing-announcement-heading" class="pricing-announcement__heading">
+          {pricing.announcement.heading}
+        </h3>
+        <p class="pricing-announcement__body">{pricing.announcement.body}</p>
+      </div>
+      <a class="pricing-announcement__cta" href={pricing.announcement.ctaHref}>
+        {pricing.announcement.ctaLabel}
+        <span aria-hidden="true">→</span>
+      </a>
+    </aside>
+
     <div class="grid gap-5 lg:grid-cols-[0.82fr_0.95fr_1.45fr] lg:items-stretch">
       <article class="pricing-panel pricing-panel--flow">
         <p class="pricing-panel__label">{pricing.premise.label}</p>
@@ -131,6 +146,81 @@ const { pricing } = Astro.props;
     box-shadow: 0 12px 30px rgba(11, 40, 88, 0.07);
   }
 
+  .pricing-announcement {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 1rem;
+    margin: 0 auto 2.75rem;
+    border: 1px solid #d7bd75;
+    border-radius: 1rem;
+    background: #fffaf0;
+    box-shadow: 0 8px 24px rgba(168, 139, 61, 0.1);
+    padding: 1.25rem 1.5rem;
+  }
+
+  .pricing-announcement__icon {
+    display: grid;
+    place-items: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 999px;
+    background: #a88b3d;
+    color: #ffffff;
+    font-size: 1.125rem;
+    font-weight: 800;
+    line-height: 1;
+  }
+
+  .pricing-announcement__label {
+    color: #806821;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+  }
+
+  .pricing-announcement__heading {
+    margin-top: 0.25rem;
+    color: #3f3415;
+    font-size: 1rem;
+    font-weight: 800;
+    line-height: 1.6;
+  }
+
+  .pricing-announcement__body {
+    margin-top: 0.35rem;
+    color: #594f33;
+    font-size: 0.875rem;
+    line-height: 1.8;
+  }
+
+  .pricing-announcement__cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    border-radius: 999px;
+    background: #1f6b4d;
+    padding: 0.75rem 1rem;
+    color: #ffffff;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    line-height: 1.4;
+    text-decoration: none;
+    transition: background-color 150ms ease, transform 150ms ease;
+    white-space: nowrap;
+  }
+
+  .pricing-announcement__cta:hover {
+    background: #0f3d2e;
+    transform: translateY(-1px);
+  }
+
+  .pricing-announcement__cta:focus-visible {
+    outline: 3px solid #a88b3d;
+    outline-offset: 3px;
+  }
+
   .pricing-panel__label {
     width: max-content;
     min-width: 9rem;
@@ -172,6 +262,20 @@ const { pricing } = Astro.props;
     font-size: 0.66rem;
     font-weight: 700;
     white-space: nowrap;
+  }
+
+  @media (max-width: 767px) {
+    .pricing-announcement {
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: 0.75rem;
+      margin-bottom: 2.25rem;
+      padding: 1rem;
+    }
+
+    .pricing-announcement__cta {
+      grid-column: 1 / -1;
+      margin-top: 0.25rem;
+    }
   }
 
   @media (min-width: 1024px) {
