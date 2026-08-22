@@ -19,7 +19,7 @@ const { pricing } = Astro.props;
           <p class="mt-3 text-sm font-semibold text-[#23823F]">{pricing.startingPrice.taxNote}</p>
           <div class="mt-8 w-full border-t border-dashed border-[#9CC7A5] pt-7">
             <p class="pricing-scale__label">{pricing.scale.label}</p>
-            <h3 class="mt-2 text-xl font-bold leading-relaxed text-[#0B2858] md:text-2xl">
+            <h3 class="mt-2 whitespace-pre-line text-xl font-bold leading-relaxed text-[#0B2858] md:text-2xl">
               {pricing.scale.heading}
             </h3>
           </div>
@@ -32,6 +32,15 @@ const { pricing } = Astro.props;
           <p class="mt-4 text-base leading-8 text-[#374151] md:text-lg">
             {pricing.scale.body}
           </p>
+          <div class="pricing-credit mt-6">
+            <p class="pricing-credit__label">{pricing.credit.label}</p>
+            <h3 class="mt-1 text-base font-bold leading-relaxed text-[#0B2858] md:text-lg">
+              {pricing.credit.heading}
+            </h3>
+            <p class="mt-1 text-sm leading-7 text-[#4B5563]">
+              {pricing.credit.body}
+            </p>
+          </div>
           <div class="mt-7 border-t border-[#DCE5DE] pt-7">
             <h3 class="text-xl font-bold leading-relaxed text-[#0B2858] md:text-2xl">
               {pricing.inquiry.heading}
@@ -91,6 +100,19 @@ const { pricing } = Astro.props;
 
   .pricing-scale__label {
     color: #806821;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+  }
+
+  .pricing-credit {
+    border-radius: 0.75rem;
+    background: #f3faf6;
+    padding: 1rem 1.125rem;
+  }
+
+  .pricing-credit__label {
+    color: #1f6b4d;
     font-size: 0.75rem;
     font-weight: 800;
     letter-spacing: 0.08em;
