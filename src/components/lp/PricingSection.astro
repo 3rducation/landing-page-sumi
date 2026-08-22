@@ -4,130 +4,50 @@ const { pricing } = Astro.props;
 
 <section id="pricing" class="pricing-section bg-[#F6F8F7] py-14 md:py-20">
   <div class="mx-auto max-w-[1160px] px-4 md:px-8">
-    <div class="mb-8 text-center md:mb-12">
+    <div class="mb-10 text-center md:mb-12">
       <p class="section-eyebrow mb-3">{pricing.eyebrow}</p>
       <h2 class="section-heading copy-pre-line">{pricing.heading}</h2>
     </div>
 
-    <aside class="pricing-announcement" aria-labelledby="pricing-announcement-heading">
-      <div class="pricing-announcement__icon" aria-hidden="true">!</div>
-      <div class="min-w-0">
-        <p class="pricing-announcement__label">{pricing.announcement.label}</p>
-        <h3 id="pricing-announcement-heading" class="pricing-announcement__heading">
-          {pricing.announcement.heading}
-        </h3>
-        <p class="pricing-announcement__body">{pricing.announcement.body}</p>
-      </div>
-      <a class="pricing-announcement__cta" href={pricing.announcement.ctaHref}>
-        {pricing.announcement.ctaLabel}
-        <span aria-hidden="true">→</span>
-      </a>
-    </aside>
-
-    <div class="grid gap-5 lg:grid-cols-[0.82fr_0.95fr_1.45fr] lg:items-stretch">
-      <article class="pricing-panel pricing-panel--flow">
-        <p class="pricing-panel__label">{pricing.premise.label}</p>
-        <div class="flex h-full flex-col px-5 pb-6 pt-7 md:px-6">
-          <p class="text-center text-lg font-bold text-[#0B2858] md:text-xl">
-            {pricing.premise.unit} ＝
+    <div class="grid gap-5 lg:grid-cols-[0.92fr_1.08fr] lg:items-stretch">
+      <article class="pricing-panel pricing-panel--price">
+        <p class="pricing-panel__label">{pricing.startingPrice.label}</p>
+        <div class="flex h-full flex-col items-center justify-center px-6 py-10 text-center md:px-10">
+          <p class="text-6xl font-bold leading-none tracking-tight text-[#23823F] md:text-7xl">
+            {pricing.startingPrice.amount}<span class="ml-2 text-2xl md:text-3xl">{pricing.startingPrice.unit}</span>
           </p>
-          <p class="mt-3 text-center text-2xl font-bold leading-snug text-[#0B2858] md:text-3xl">
-            {pricing.premise.definition}
-          </p>
-          <p class="mt-1 text-center text-sm font-semibold text-[#374151]">
-            {pricing.premise.context}
-          </p>
-
-          <div class="my-7 grid grid-cols-3 gap-2" aria-hidden="true">
-            <div class="pricing-symbol">
-              <span>科</span>
-              <small>1科目</small>
-            </div>
-            <div class="pricing-symbol">
-              <span>組</span>
-              <small>1クラス</small>
-            </div>
-            <div class="pricing-symbol">
-              <span>40</span>
-              <small>40人</small>
-            </div>
-          </div>
-
-          <p class="mt-auto border-t border-dashed border-[#A8B4C5] pt-5 text-center text-sm font-bold text-[#0B2858] md:text-base">
-            {pricing.premise.note}
-          </p>
-        </div>
-      </article>
-
-      <article class="pricing-panel pricing-panel--flow">
-        <p class="pricing-panel__label">{pricing.example.label}</p>
-        <div class="flex h-full flex-col px-5 pb-6 pt-7 md:px-6">
-          <p class="rounded-lg bg-[#EAF3DE] py-2 text-center text-xl font-bold text-[#1F6B2A]">
-            {pricing.example.subject}
-          </p>
-
-          <dl class="mt-4 divide-y divide-dashed divide-[#CBD5E1]">
-            {pricing.example.items.map((item) => (
-              <div class="flex items-center justify-between gap-4 py-2.5">
-                <dt class="text-sm font-semibold text-[#374151]">{item.label}</dt>
-                <dd class="shrink-0 text-lg font-bold text-[#111827]">
-                  {item.value}<span class="ml-1 text-xs font-semibold">{item.unit}</span>
-                </dd>
-              </div>
-            ))}
-          </dl>
-
-          <div class="mt-auto border-t-2 border-[#23823F] pt-4">
-            <p class="text-center text-sm font-semibold text-[#111827]">{pricing.example.formula}</p>
-            <p class="mt-3 flex items-center justify-center gap-2 text-[#111827]">
-              <span class="text-lg font-bold">＝</span>
-              <strong class="rounded-lg bg-[#23823F] px-4 py-2 text-3xl leading-none text-white">
-                {pricing.example.result}<span class="ml-1 text-lg">{pricing.example.resultUnit}</span>
-              </strong>
-            </p>
+          <p class="mt-3 text-sm font-semibold text-[#23823F]">{pricing.startingPrice.taxNote}</p>
+          <div class="mt-8 w-full border-t border-dashed border-[#9CC7A5] pt-7">
+            <p class="pricing-scale__label">{pricing.scale.label}</p>
+            <h3 class="mt-2 text-xl font-bold leading-relaxed text-[#0B2858] md:text-2xl">
+              {pricing.scale.heading}
+            </h3>
           </div>
         </div>
       </article>
 
-      <article class="pricing-panel">
-        <p class="pricing-panel__label">{pricing.fees.label}</p>
-        <div class="grid h-full gap-4 px-5 pb-6 pt-7 sm:grid-cols-2 lg:px-6">
-          <div class="overflow-hidden rounded-xl border-2 border-[#23823F] bg-white">
-            <p class="bg-[#23823F] px-4 py-3 text-center text-lg font-bold text-white">
-              {pricing.fees.initial.title}
+      <article class="pricing-panel pricing-panel--inquiry">
+        <div class="flex h-full flex-col px-6 py-9 md:px-10 md:py-10">
+          <p class="section-eyebrow">お見積もり</p>
+          <p class="mt-4 text-base leading-8 text-[#374151] md:text-lg">
+            {pricing.scale.body}
+          </p>
+          <div class="mt-7 border-t border-[#DCE5DE] pt-7">
+            <h3 class="text-xl font-bold leading-relaxed text-[#0B2858] md:text-2xl">
+              {pricing.inquiry.heading}
+            </h3>
+            <p class="mt-3 text-sm leading-7 text-[#4B5563] md:text-base">
+              {pricing.inquiry.body}
             </p>
-            <div class="px-4 py-5 text-center">
-              <p class="text-xl font-bold text-[#23823F]">{pricing.fees.initial.period}</p>
-              <p class="mt-1 text-5xl font-bold leading-none tracking-tight text-[#23823F] md:text-6xl">
-                {pricing.fees.initial.amount}<span class="ml-1 text-2xl">万円</span>
-              </p>
-              <p class="mt-2 text-sm font-semibold text-[#23823F]">（税抜）</p>
-              <p class="mt-5 border-t border-[#9CC7A5] pt-4 text-sm font-bold leading-relaxed text-[#111827]">
-                約<span class="mx-1 text-2xl text-[#23823F]">{pricing.fees.initial.capacity}</span>セットまで<br />
-                利用可能
-              </p>
-            </div>
-          </div>
-
-          <div class="overflow-hidden rounded-xl border-2 border-[#6CA36E] bg-white">
-            <p class="bg-[#F3F8EF] px-4 py-3 text-center text-lg font-bold text-[#237B36]">
-              {pricing.fees.additional.title}
-            </p>
-            <div class="px-4 py-5 text-center">
-              <p class="text-xl font-bold text-[#23823F]">{pricing.fees.additional.period}</p>
-              <p class="mt-1 text-5xl font-bold leading-none tracking-tight text-[#23823F] md:text-6xl">
-                {pricing.fees.additional.amount}<span class="ml-1 text-2xl">万円</span>
-              </p>
-              <p class="mt-2 text-sm font-semibold text-[#23823F]">（税抜）</p>
-              <p class="mt-5 border-t border-[#B8D5BB] pt-4 text-sm font-bold leading-relaxed text-[#111827]">
-                約<span class="mx-1 text-2xl text-[#23823F]">{pricing.fees.additional.capacity}</span>セットまで<br />
-                利用可能
-              </p>
-            </div>
+            <a class="pricing-inquiry__cta mt-6" href={pricing.inquiry.ctaHref}>
+              {pricing.inquiry.ctaLabel}
+              <span aria-hidden="true">→</span>
+            </a>
           </div>
         </div>
       </article>
     </div>
+
     <p class="mt-4 text-right text-xs leading-relaxed text-[#4B5563] sm:text-sm">
       {pricing.priceNote}
     </p>
@@ -146,79 +66,13 @@ const { pricing } = Astro.props;
     box-shadow: 0 12px 30px rgba(11, 40, 88, 0.07);
   }
 
-  .pricing-announcement {
-    display: grid;
-    grid-template-columns: auto minmax(0, 1fr) auto;
-    align-items: center;
-    gap: 1rem;
-    margin: 0 auto 2.75rem;
-    border: 1px solid #d7bd75;
-    border-radius: 1rem;
-    background: #fffaf0;
-    box-shadow: 0 8px 24px rgba(168, 139, 61, 0.1);
-    padding: 1.25rem 1.5rem;
+  .pricing-panel--price {
+    border-color: #86b995;
+    background: linear-gradient(145deg, #ffffff 0%, #f3faf6 100%);
   }
 
-  .pricing-announcement__icon {
-    display: grid;
-    place-items: center;
-    width: 2rem;
-    height: 2rem;
-    border-radius: 999px;
-    background: #a88b3d;
-    color: #ffffff;
-    font-size: 1.125rem;
-    font-weight: 800;
-    line-height: 1;
-  }
-
-  .pricing-announcement__label {
-    color: #806821;
-    font-size: 0.75rem;
-    font-weight: 800;
-    letter-spacing: 0.08em;
-  }
-
-  .pricing-announcement__heading {
-    margin-top: 0.25rem;
-    color: #3f3415;
-    font-size: 1rem;
-    font-weight: 800;
-    line-height: 1.6;
-  }
-
-  .pricing-announcement__body {
-    margin-top: 0.35rem;
-    color: #594f33;
-    font-size: 0.875rem;
-    line-height: 1.8;
-  }
-
-  .pricing-announcement__cta {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.4rem;
-    border-radius: 999px;
-    background: #1f6b4d;
-    padding: 0.75rem 1rem;
-    color: #ffffff;
-    font-size: 0.8125rem;
-    font-weight: 700;
-    line-height: 1.4;
-    text-decoration: none;
-    transition: background-color 150ms ease, transform 150ms ease;
-    white-space: nowrap;
-  }
-
-  .pricing-announcement__cta:hover {
-    background: #0f3d2e;
-    transform: translateY(-1px);
-  }
-
-  .pricing-announcement__cta:focus-visible {
-    outline: 3px solid #a88b3d;
-    outline-offset: 3px;
+  .pricing-panel--inquiry {
+    border-color: #d7bd75;
   }
 
   .pricing-panel__label {
@@ -235,60 +89,43 @@ const { pricing } = Astro.props;
     text-align: center;
   }
 
-  .pricing-symbol {
-    display: grid;
-    place-items: center;
-    gap: 0.25rem;
-    min-width: 0;
-    border-radius: 10px;
-    background: #f3f8ef;
-    padding: 0.75rem 0.25rem;
-    color: #1f6b4d;
-  }
-
-  .pricing-symbol span {
-    display: grid;
-    place-items: center;
-    width: 2.35rem;
-    height: 2.35rem;
-    border: 1px solid #8fc39e;
-    border-radius: 999px;
-    background: #ffffff;
+  .pricing-scale__label {
+    color: #806821;
+    font-size: 0.75rem;
     font-weight: 800;
-    line-height: 1;
+    letter-spacing: 0.08em;
   }
 
-  .pricing-symbol small {
-    font-size: 0.66rem;
+  .pricing-inquiry__cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    align-self: flex-start;
+    border-radius: 999px;
+    background: #1f6b4d;
+    padding: 0.75rem 1rem;
+    color: #ffffff;
+    font-size: 0.875rem;
     font-weight: 700;
-    white-space: nowrap;
+    line-height: 1.4;
+    text-decoration: none;
+    transition: background-color 150ms ease, transform 150ms ease;
   }
 
-  @media (max-width: 767px) {
-    .pricing-announcement {
-      grid-template-columns: auto minmax(0, 1fr);
-      gap: 0.75rem;
-      margin-bottom: 2.25rem;
-      padding: 1rem;
-    }
-
-    .pricing-announcement__cta {
-      grid-column: 1 / -1;
-      margin-top: 0.25rem;
-    }
+  .pricing-inquiry__cta:hover {
+    background: #0f3d2e;
+    transform: translateY(-1px);
   }
 
-  @media (min-width: 1024px) {
-    .pricing-panel--flow::after {
-      content: "→";
-      position: absolute;
-      top: 48%;
-      right: -1.45rem;
-      z-index: 10;
-      color: #0b2858;
-      font-size: 1.5rem;
-      font-weight: 800;
-      line-height: 1;
+  .pricing-inquiry__cta:focus-visible {
+    outline: 3px solid #a88b3d;
+    outline-offset: 3px;
+  }
+
+  @media (max-width: 640px) {
+    .pricing-inquiry__cta {
+      width: 100%;
     }
   }
 </style>

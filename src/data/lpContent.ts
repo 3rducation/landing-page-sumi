@@ -233,51 +233,27 @@ export const security = {
 
 export const pricing = {
   eyebrow: "料金",
-  heading: "利用状況に合わせて、無駄なく使えるセット制",
-  announcement: {
-    label: "料金に関するお知らせ",
-    heading: "大幅なコストカットに向け、料金形態の大幅変更を予定しております。",
+  heading: "学校の運用に合わせた料金をご提案します",
+  startingPrice: {
+    label: "年間利用の目安",
+    amount: "40",
+    unit: "万円から",
+    taxNote: "（税抜）",
+  },
+  scale: {
+    label: "ご利用イメージ",
+    heading: "10クラス・10科目程度の採点に対応",
     body:
-      "現在、よりご利用いただきやすい料金形態を検証しております。正式な発表までもうしばらくお待ちください。詳しく知りたい方は、ぜひお問い合わせいただけますと幸いです。",
-    ctaLabel: "料金について問い合わせる",
+      "年間を通じた定期テスト等の採点を想定した目安です。実際の料金は、テスト回数や生徒数、利用する機能・サポート内容に応じてご案内します。",
+  },
+  inquiry: {
+    heading: "貴校に合う利用方法・お見積もりをご案内します",
+    body:
+      "利用規模や現在の採点フローを伺い、導入方法と料金をご提案します。まずはお気軽にお問い合わせください。",
+    ctaLabel: "料金・導入について問い合わせる",
     ctaHref: "#contact",
   },
-  premise: {
-    label: "前提",
-    unit: "1セット",
-    definition: "1科目 × 1クラス（40人）",
-    context: "のテスト採点",
-    note: "※ 小テストは0.5セット",
-  },
-  example: {
-    label: "計算例",
-    subject: "数学1",
-    items: [
-      { label: "小テスト", value: "20", unit: "回" },
-      { label: "中間", value: "2", unit: "回" },
-      { label: "期末", value: "3", unit: "回" },
-      { label: "クラス数", value: "10", unit: "クラス" },
-    ],
-    formula: "（20 × 0.5 ＋ 2 ＋ 3）× 10",
-    result: "150",
-    resultUnit: "セット",
-  },
-  fees: {
-    label: "料金形態",
-    initial: {
-      title: "初回費用",
-      period: "年間",
-      amount: "40",
-      capacity: "900",
-    },
-    additional: {
-      title: "追加購入",
-      period: "追加",
-      amount: "20",
-      capacity: "400",
-    },
-  },
-  priceNote: "*価格は為替等の影響で変更されることがあります。",
+  priceNote: "※ 料金・対応範囲はご利用条件により異なります。詳しくはお問い合わせください。",
 };
 
 export const contact = {
