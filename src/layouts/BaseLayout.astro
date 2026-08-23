@@ -30,6 +30,20 @@ const websiteSchema = {
     name: '合同会社3rducation',
   },
 };
+const productSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'AI自動採点「澄」',
+  alternateName: ['澄', 'AI自動採点ツール 澄', '自動採点ツール 澄'],
+  applicationCategory: 'EducationalApplication',
+  operatingSystem: 'Web',
+  url: canonicalUrl,
+  description,
+  provider: {
+    '@type': 'Organization',
+    name: '合同会社3rducation',
+  },
+};
 ---
 
 <!DOCTYPE html>
@@ -60,6 +74,7 @@ const websiteSchema = {
   <script is:inline>document.documentElement.classList.add('js');</script>
   <script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(productSchema)} />
 </head>
 <body class="antialiased">
   <canvas id="fluid-bg" aria-hidden="true"></canvas>
