@@ -13,53 +13,30 @@ const { pricing } = Astro.props;
       <article class="pricing-panel pricing-panel--price">
         <p class="pricing-panel__label">{pricing.startingPrice.label}</p>
         <div class="flex h-full flex-col items-center justify-center px-6 py-10 text-center md:px-10">
+          <p class="mb-2 text-base font-bold text-[#0B2858] md:text-lg">{pricing.startingPrice.period}</p>
           <p class="text-6xl font-bold leading-none tracking-tight text-[#23823F] md:text-7xl">
             {pricing.startingPrice.amount}<span class="ml-2 text-2xl md:text-3xl">{pricing.startingPrice.unit}</span>
           </p>
-          <p class="mt-3 text-sm font-semibold text-[#23823F]">{pricing.startingPrice.taxNote}</p>
-          <div class="mt-8 w-full border-t border-dashed border-[#9CC7A5] pt-7">
-            <p class="pricing-scale__label">{pricing.scale.label}</p>
-            <h3 class="mt-2 whitespace-pre-line text-xl font-bold leading-relaxed text-[#0B2858] md:text-2xl">
-              {pricing.scale.heading}
-            </h3>
-          </div>
+          <p class="mt-3 text-base font-semibold text-[#23823F] md:text-lg">{pricing.startingPrice.taxNote}</p>
         </div>
       </article>
 
       <article class="pricing-panel pricing-panel--inquiry">
         <div class="flex h-full flex-col px-6 py-9 md:px-10 md:py-10">
-          <p class="section-eyebrow">お見積もり</p>
-          <p class="mt-4 text-base leading-8 text-[#374151] md:text-lg">
-            {pricing.scale.body}
+          <p class="section-eyebrow">{pricing.inquiry.label}</p>
+          <h3 class="mt-4 text-xl font-bold leading-relaxed text-[#0B2858] md:text-2xl">
+            {pricing.inquiry.heading}
+          </h3>
+          <p class="mt-3 text-sm leading-7 text-[#4B5563] md:text-base">
+            {pricing.inquiry.body}
           </p>
-          <div class="pricing-credit mt-6">
-            <p class="pricing-credit__label">{pricing.credit.label}</p>
-            <h3 class="mt-1 text-base font-bold leading-relaxed text-[#0B2858] md:text-lg">
-              {pricing.credit.heading}
-            </h3>
-            <p class="mt-1 text-sm leading-7 text-[#4B5563]">
-              {pricing.credit.body}
-            </p>
-          </div>
-          <div class="mt-7 border-t border-[#DCE5DE] pt-7">
-            <h3 class="text-xl font-bold leading-relaxed text-[#0B2858] md:text-2xl">
-              {pricing.inquiry.heading}
-            </h3>
-            <p class="mt-3 text-sm leading-7 text-[#4B5563] md:text-base">
-              {pricing.inquiry.body}
-            </p>
-            <a class="pricing-inquiry__cta mt-6" href={pricing.inquiry.ctaHref}>
-              {pricing.inquiry.ctaLabel}
-              <span aria-hidden="true">→</span>
-            </a>
-          </div>
+          <a class="pricing-inquiry__cta mt-7" href={pricing.inquiry.ctaHref}>
+            {pricing.inquiry.ctaLabel}
+            <span aria-hidden="true">→</span>
+          </a>
         </div>
       </article>
     </div>
-
-    <p class="mt-4 text-right text-xs leading-relaxed text-[#4B5563] sm:text-sm">
-      {pricing.priceNote}
-    </p>
   </div>
 </section>
 
@@ -98,26 +75,6 @@ const { pricing } = Astro.props;
     text-align: center;
   }
 
-  .pricing-scale__label {
-    color: #806821;
-    font-size: 0.75rem;
-    font-weight: 800;
-    letter-spacing: 0.08em;
-  }
-
-  .pricing-credit {
-    border-radius: 0.75rem;
-    background: #f3faf6;
-    padding: 1rem 1.125rem;
-  }
-
-  .pricing-credit__label {
-    color: #1f6b4d;
-    font-size: 0.75rem;
-    font-weight: 800;
-    letter-spacing: 0.08em;
-  }
-
   .pricing-inquiry__cta {
     display: inline-flex;
     align-items: center;
@@ -150,4 +107,5 @@ const { pricing } = Astro.props;
       width: 100%;
     }
   }
+
 </style>
