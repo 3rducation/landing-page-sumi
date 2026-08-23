@@ -228,7 +228,6 @@ export const security = {
   imageSrc: "/images/data-security-flow.png",
   imageAlt:
     "生徒名簿と解答用紙の保存、氏名を隠した解答用紙を使った生成AI採点、氏名部分の画像認識、プライベートクラウドでの保管と2か月後の削除を示すデータフロー図",
-  note: "※ セキュリティ認証（ISMS・Pマーク等）については現在取得に向けて準備中です。詳細はお問い合わせください。",
 };
 
 export const pricing = {
