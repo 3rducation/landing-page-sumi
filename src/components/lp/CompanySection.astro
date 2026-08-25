@@ -6,6 +6,14 @@ const { company } = Astro.props;
   <div class="mx-auto grid max-w-[1160px] gap-10 px-4 md:grid-cols-[0.72fr_1.28fr] md:px-8 lg:gap-14">
     <div>
       <p class="section-eyebrow mb-3">{company.eyebrow}</p>
+      <div class="company-logo-frame">
+        <img
+          src="/images/logo-transparent.png"
+          alt="3rducation"
+          class="company-logo"
+          loading="lazy"
+        />
+      </div>
       <h2 class="section-heading copy-pre-line">{company.heading}</h2>
 
       <figure class="company-representative">
@@ -97,6 +105,24 @@ const { company } = Astro.props;
   .company-section {
     border-top: 1px solid rgba(31, 107, 77, 0.12);
     border-bottom: 1px solid rgba(31, 107, 77, 0.12);
+  }
+
+  .company-logo-frame {
+    position: relative;
+    width: min(100%, 17.5rem);
+    height: 4.7rem;
+    margin: -0.65rem 0 0.35rem -3.3rem;
+    overflow: hidden;
+  }
+
+  .company-logo {
+    position: absolute;
+    top: -3.25rem;
+    left: 0;
+    display: block;
+    width: 21rem;
+    max-width: none;
+    height: auto;
   }
 
   .company-representative {
