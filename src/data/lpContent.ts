@@ -236,10 +236,11 @@ export const pricing = {
   heading: "学校の運用に合わせた料金をご提案します",
   startingPrice: {
     label: "ご利用料金の目安",
-    period: "年間利用",
+    period: "年間利用・全校生徒1,000人の場合",
     amount: "40",
     unit: "万円〜",
     taxNote: "（税抜）",
+    note: "※ 小〜中規模校の場合は、別途お見積もりします。",
   },
   inquiry: {
     label: "お見積もり",
